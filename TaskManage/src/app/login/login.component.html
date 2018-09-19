@@ -11,13 +11,16 @@
   <div class="form-group">
       <label for="password">Password</label>
       <input class="form-control" type="password" [(ngModel)]="user.password" name="password" 
-             required minlength="6" #password="ngModel">
+             required minlength="6" #password="ngModel" appPassword>
       <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
         <div *ngIf="password.errors.required">
             Password is required
         </div>
         <div *ngIf="password.errors.minlength">
             Password should minimun {{password.errors.minlength.requiredLength}}
+        </div>
+        <div *ngIf="password.errors.passwordInvalid">
+            Password must contain at least one number and at least one lowercase letter
         </div>
       </div>
   </div>

@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PasswordDirective } from './directives/password.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
-    TasksComponent
+    TasksComponent,
+    PasswordDirective
   ],
   imports: [
     BrowserModule,
