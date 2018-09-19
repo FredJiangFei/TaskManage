@@ -5,12 +5,20 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    {
+        path: '',
+        component: HomeComponent,
+        canActivate: [AuthGuard],
+        children: [
+            { path: 'tasks', component: TasksComponent },
+        ]
+    },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'tasks', component: TasksComponent },
     { path: '**', component: NotFoundComponent },
 ];
 
