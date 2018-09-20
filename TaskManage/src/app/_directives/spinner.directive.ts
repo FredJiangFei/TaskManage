@@ -1,4 +1,4 @@
-import { Directive, Input, OnChanges, SimpleChanges, ElementRef } from '@angular/core';
+import { Directive, Input, OnChanges, SimpleChanges, ElementRef, Renderer2 } from '@angular/core';
 import { Spinner } from 'node_modules/spin.js';
 
 @Directive({
@@ -6,20 +6,28 @@ import { Spinner } from 'node_modules/spin.js';
 })
 export class SpinnerDirective implements OnChanges {
   @Input() appSpinner: boolean;
-  spinner: Spinner;
+  spinner: Spinner =  new Spinner({
+     scale: 0.7,
+     color: '#fff'
+  });
 
-  constructor(
-    private elementRef: ElementRef) {
-      this.spinner =  new Spinner();
-    }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+
+  }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.appSpinner.currentValue) {
-      this.spinner.spin(this.elementRef.nativeElement);
+    const loading = changes.appSpinner.currentValue;
+    if (loading) {
+      const spinnerEle = this.spinner.spin();
+      spinnerEle.el.style.display = 'inline-block';
+      spinnerEle.el.style.position = 'relative';
+      spinnerEle.el.style.bottom = '5px';
+      this.renderer.appendChild(this.elementRef.nativeElement, spinnerEle.el);
     } else {
       this.spinner.stop();
     }
-    this.elementRef.nativeElement.disabled = changes.appSpinner.currentValue;
+    this.elementRef.nativeElement.style.paddingRight = loading ? '45px' : '';
+    this.elementRef.nativeElement.disabled = loading;
   }
 }
 

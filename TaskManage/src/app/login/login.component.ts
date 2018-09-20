@@ -15,7 +15,7 @@ export class LoginComponent {
     username: '',
     password: '',
   };
-  submitting: boolean;
+  logining: boolean;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -23,10 +23,10 @@ export class LoginComponent {
     private alertify: AlertifyService) { }
 
   login() {
-    this.submitting = true;
+    this.logining = true;
     this.authService.login(this.user)
     .pipe(
-      finalize(() => this.submitting = false)
+      finalize(() => this.logining = false)
     )
     .subscribe(_ => {
        if (this.authService.LoggedIn()) {
