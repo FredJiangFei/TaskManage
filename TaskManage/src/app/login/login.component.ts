@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../_services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoginCommand } from '../commands/login.command';
-import { AlertifyService } from '../services/alertify.service';
+import { LoginCommand } from '../_commands/login.command';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-login',

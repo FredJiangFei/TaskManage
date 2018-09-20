@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { PasswordDirective } from './directives/password.directive';
+import { PasswordDirective } from './_directives/password.directive';
 
 @NgModule({
   declarations: [

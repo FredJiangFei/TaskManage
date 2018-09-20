@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user';
+import { User } from '../_models/user';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { LoginCommand } from '../commands/login.command';
-import { RegisterCommand } from '../commands/register.command';
+import { LoginCommand } from '../_commands/login.command';
+import { RegisterCommand } from '../_commands/register.command';
 
 @Injectable({
   providedIn: 'root'
