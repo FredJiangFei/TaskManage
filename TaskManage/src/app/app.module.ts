@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PasswordDirective } from './_directives/password.directive';
 import { SpinnerDirective } from './_directives/spinner.directive';
+import { LaddaModule } from 'angular2-ladda';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SpinnerDirective } from './_directives/spinner.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    LaddaModule,
     AppRoutingModule
   ],
   providers: [],

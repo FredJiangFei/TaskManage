@@ -24,15 +24,18 @@ export class LoginComponent {
 
   login() {
     this.logining = true;
-    this.authService.login(this.user)
-    .pipe(
-      finalize(() => this.logining = false)
-    )
-    .subscribe(_ => {
-       if (this.authService.LoggedIn()) {
-           const returnUrl = this.activedRoute.snapshot.queryParamMap.get('returnUrl');
-           this.router.navigate([returnUrl || '/']);
-       }
-    }, err => this.alertify.error(err.message));
+    setTimeout(() => {
+      this.authService.login(this.user)
+      .pipe(
+        finalize(() => this.logining = false)
+      )
+      .subscribe(_ => {
+         if (this.authService.LoggedIn()) {
+             const returnUrl = this.activedRoute.snapshot.queryParamMap.get('returnUrl');
+             this.router.navigate([returnUrl || '/']);
+         }
+      }, err => this.alertify.error(err.message));
+
+    }, 500);
   }
 }
