@@ -23,11 +23,14 @@ export class AuthService {
         username: user.username,
         password: user.password
       }
-    }).pipe(
+    })
+    .pipe(
       tap(response => {
         const loginUser = response[0];
         if (!!loginUser) {
           localStorage.setItem('loginUser', JSON.stringify(loginUser));
+        } else {
+          throw new Error('Username or password is wrong');
         }
       })
     );

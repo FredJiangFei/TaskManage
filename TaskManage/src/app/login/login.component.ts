@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginCommand } from '../commands/login.command';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activedRoute: ActivatedRoute) { }
+    private activedRoute: ActivatedRoute,
+    private alertify: AlertifyService) { }
 
   login() {
     this.authService.login(this.user).subscribe(_ => {
@@ -24,6 +26,6 @@ export class LoginComponent {
            const returnUrl = this.activedRoute.snapshot.queryParamMap.get('returnUrl');
            this.router.navigate([returnUrl || '/']);
        }
-    });
+    }, err => this.alertify.error(err.message));
   }
 }
