@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../models/user';
+import { LoginCommand } from '../commands/login.command';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { User } from '../models/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  user: User = {
+  user: LoginCommand = {
     username: '',
     password: '',
   };

@@ -8,7 +8,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
-    { path: '',  redirectTo: 'register', pathMatch: 'full'},
     {
         path: '',
         component: HomeComponent,

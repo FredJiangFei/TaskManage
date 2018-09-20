@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { LoginCommand } from '../commands/login.command';
+import { RegisterCommand } from '../commands/register.command';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class AuthService {
     return !!isLogin;
   }
 
-  login(user: User) {
+  login(user: LoginCommand) {
     return this.http.get<User>(`${environment.baseUrl}/users`, {
       params: {
         username: user.username,
@@ -29,6 +31,10 @@ export class AuthService {
         }
       })
     );
+  }
+
+  register(user: RegisterCommand) {
+    return this.http.post(`${environment.baseUrl}/users`, user);
   }
 
   logout() {
