@@ -11,6 +11,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PasswordDirective } from './_directives/password.directive';
+import { SpinnerDirective } from './_directives/spinner.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PasswordDirective } from './_directives/password.directive';
     HomeComponent,
     NotFoundComponent,
     TasksComponent,
-    PasswordDirective
+    PasswordDirective,
+    SpinnerDirective
   ],
   imports: [
     BrowserModule,
