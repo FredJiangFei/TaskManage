@@ -15,18 +15,17 @@
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password">
 
-          <mat-error *ngIf="password.touched && password.invalid">
-            <span *ngIf="password.hasError('required')">
+          <ng-container *ngIf="password.touched && password.invalid">
+            <mat-error *ngIf="password.hasError('required')">
               Password is required
-            </span>
-            <span *ngIf="password.hasError('minlength')">
-              Password should minimun
-              {{password.getError('minlength').requiredLength}}
-            </span>
-            <span *ngIf="password.hasError('passwordInvalid')">
+            </mat-error>
+            <mat-error *ngIf="password.hasError('minlength')">
+                Password should minimun {{password.getError('minlength').requiredLength}}
+            </mat-error>
+            <mat-error *ngIf="password.hasError('passwordInvalid')">
               Password must contain at least one number and at least one lowercase letter
-            </span>
-          </mat-error>
+            </mat-error>
+          </ng-container>
         </mat-form-field>
 
         <mat-form-field class="full-width">
