@@ -14,16 +14,33 @@
         <mat-form-field class="full-width">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password">
+
+          <mat-error *ngIf="password.touched && password.invalid">
+            <span *ngIf="password.hasError('required')">
+              Password is required
+            </span>
+            <span *ngIf="password.hasError('minlength')">
+              Password should minimun
+              {{password.getError('minlength').requiredLength}}
+            </span>
+            <span *ngIf="password.hasError('passwordInvalid')">
+              Password must contain at least one number and at least one lowercase letter
+            </span>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Confirm Password</mat-label>
-          <input matInput type="password" formControlName="confirmpassword">
+          <input matInput type="password" formControlName="confirmpassword" [errorStateMatcher]="mismatchMatcher">
+          <mat-error *ngIf="passwordGroup.hasError('mismatch')">
+              Password is mismatch
+          </mat-error>
         </mat-form-field>
       </ng-container>
     </mat-card-content>
+
     <mat-card-actions [align]="'end'">
-      <button  mat-flat-button [disabled]="registerForm.invalid">Register</button>
+      <button mat-flat-button [disabled]="registerForm.invalid">Register</button>
     </mat-card-actions>
 
     <mat-card-footer>
