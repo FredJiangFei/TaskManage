@@ -13,6 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { PasswordDirective } from './_directives/password.directive';
 import { SpinnerDirective } from './_directives/spinner.directive';
 import { LaddaModule } from 'angular2-ladda';
+import {
+  MatInputModule
+} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,10 +31,12 @@ import { LaddaModule } from 'angular2-ladda';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     LaddaModule,
+    MatInputModule,
     AppRoutingModule
   ],
   providers: [],

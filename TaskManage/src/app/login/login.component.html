@@ -1,32 +1,33 @@
 <form #loginForm="ngForm" class="container" (ngSubmit)="login()" novalidate>
-  <div class="form-group">
-      <label for="username">User name</label>
-      <input class="form-control" type="text" [(ngModel)]="user.username" name="username" required #username="ngModel">
-      <div *ngIf="username.touched && username.invalid"  class="alert alert-danger">
-          <div *ngIf="username.errors.required">
-              Username is required
-          </div>
-      </div>
-  </div>
-  <div class="form-group">
-      <label for="password">Password</label>
-      <input class="form-control" type="password" [(ngModel)]="user.password" name="password" 
-             required minlength="6" #password="ngModel" appPassword>
-      <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
-        <div *ngIf="password.errors.required">
-            Password is required
-        </div>
-        <div *ngIf="password.errors.minlength">
-            Password should minimun {{password.errors.minlength.requiredLength}}
-        </div>
-        <div *ngIf="password.errors.passwordInvalid">
-            Password must contain at least one number and at least one lowercase letter
-        </div>
-      </div>
-  </div>
-  <div class="form-group">
-      <button class="btn btn-primary" [disabled]="loginForm.invalid" [appSpinner]="logining">
-        Login
-      </button>
-  </div>
+    <mat-form-field>
+        <mat-label>User name</mat-label>
+        <input matInput [(ngModel)]="user.username" name="username" required #username="ngModel">
+        <mat-error *ngIf="username.touched && username.invalid">
+            <span *ngIf="username.errors.required">Username is required</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="user.password" name="password" 
+        required minlength="6" #password="ngModel" appPassword>
+
+        <mat-error *ngIf="password.touched && password.invalid">
+            <span *ngIf="password.errors.required">
+                Password is required
+            </span>
+            <span *ngIf="password.errors.minlength">
+                Password should minimun {{password.errors.minlength.requiredLength}}
+            </span>
+            <span *ngIf="password.errors.passwordInvalid">
+                Password must contain at least one number and at least one lowercase letter
+            </span>
+        </mat-error>
+    </mat-form-field>
+    
+    <div class="form-group">
+        <button class="btn btn-primary" [disabled]="loginForm.invalid" [appSpinner]="logining">
+            Login
+        </button>
+    </div>
 </form>
