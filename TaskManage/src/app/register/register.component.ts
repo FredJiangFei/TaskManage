@@ -1,5 +1,6 @@
+import { PasswordValidators } from './../_validators/password.validator';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '../../../node_modules/@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterCommand } from '../_commands/register.command';
@@ -18,10 +19,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.fb.group(
       {
-        username: [''],
+        username: ['', Validators.required],
         passwordGroup: this.fb.group({
-          password: [''],
+          password: ['', [Validators.required, Validators.minLength(6), PasswordValidators.format]],
           confirmpassword: ['']
+        }, {
+          validator: PasswordValidators.shouldEqualToPassowrd
         })
       });
   }

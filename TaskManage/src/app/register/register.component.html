@@ -23,7 +23,7 @@
       </ng-container>
     </mat-card-content>
     <mat-card-actions [align]="'end'">
-      <button  mat-flat-button>Register</button>
+      <button  mat-flat-button [disabled]="registerForm.invalid">Register</button>
     </mat-card-actions>
 
     <mat-card-footer>

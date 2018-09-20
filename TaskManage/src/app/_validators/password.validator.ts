@@ -12,4 +12,16 @@ export class PasswordValidators {
             passwordInvalid: true
         };
     }
+
+    static shouldEqualToPassowrd(control: AbstractControl): ValidationErrors | null {
+        const password = control.get('password').value;
+        const confirmPassword = control.get('confirmpassword').value;
+        if (password !== confirmPassword) {
+            return {
+                passowrdNotEqual: true
+            };
+        }
+
+        return null;
+    }
 }
