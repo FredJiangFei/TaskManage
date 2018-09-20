@@ -42,13 +42,15 @@ export class RegisterComponent implements OnInit {
           confirmpassword: ['']
         }, {
           validator: PasswordValidators.shouldEqualToPassowrd
-        })
+        }),
+        birthday: ['']
       });
   }
 
   register(value: any) {
       const user: RegisterCommand = {
         username: value.username,
+        birthday: value.birthday,
         password: value.passwordGroup['password']
      };
      this.authService.register(user)
