@@ -1,5 +1,7 @@
-<p>
-  home works!
-</p>
+<mat-toolbar color="primary">
+  <span>Welcome {{user?.username}}</span>
+  <span class="fill-remaining-space"></span>
+  <mat-icon [svgIcon]="user?.avatar" class="avatar"></mat-icon>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
 <router-outlet></router-outlet>
-<button (click)="logout()">Logout</button>

@@ -13,8 +13,13 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   LoggedIn() {
-    const isLogin = localStorage.getItem('loginUser');
-    return !!isLogin;
+    const user = localStorage.getItem('loginUser');
+    return !!user;
+  }
+
+  LoggedUser(): User {
+    const user = localStorage.getItem('loginUser');
+    return JSON.parse(user);
   }
 
   login(user: LoginCommand) {
