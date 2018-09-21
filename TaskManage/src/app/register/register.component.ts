@@ -6,6 +6,7 @@ import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterCommand } from '../_commands/register.command';
 import { ErrorStateMatcher } from '@angular/material';
+import { avatars } from '../_utils/svg.util';
 
 
 export class MismatchErrorStateMatcher implements ErrorStateMatcher {
@@ -26,7 +27,8 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   mismatchMatcher = new MismatchErrorStateMatcher();
-  avatars = ['man', 'lily', 'sugar', 'jenny', 'boy'];
+  avatars = avatars;
+  choosedAavtar = avatars[0];
 
   constructor(
     private fb: FormBuilder,
@@ -52,6 +54,7 @@ export class RegisterComponent implements OnInit {
       const user: RegisterCommand = {
         username: value.username,
         birthday: value.birthday,
+        avatar: this.choosedAavtar,
         password: value.passwordGroup['password']
      };
      this.authService.register(user)
@@ -60,6 +63,10 @@ export class RegisterComponent implements OnInit {
         this.alertify.success('Register success');
         this.router.navigate(['/login']);
       });
+  }
+
+  selectAvatar(avatar) {
+    this.choosedAavtar = avatar;
   }
 
   get password() {
