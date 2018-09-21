@@ -41,6 +41,12 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+
+        <mat-grid-list cols="5" rowHeight="1:1">
+          <mat-grid-tile class="hand" *ngFor ="let avatar of avatars">
+            <mat-icon [svgIcon]="avatar" class="avatar"></mat-icon>
+          </mat-grid-tile>
+        </mat-grid-list>
     </mat-card-content>
 
     <mat-card-actions [align]="'end'">

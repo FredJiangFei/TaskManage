@@ -26,6 +26,7 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   mismatchMatcher = new MismatchErrorStateMatcher();
+  avatars = ['man', 'lily', 'sugar', 'jenny', 'boy'];
 
   constructor(
     private fb: FormBuilder,

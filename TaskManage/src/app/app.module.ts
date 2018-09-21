@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -35,8 +35,10 @@ import {
   MatTabsModule,
   MatBadgeModule,
   MatChipsModule,
+  MatIconRegistry,
 } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { loadSvgResoures } from './_utils/svg.util';
 
 @NgModule({
   declarations: [
@@ -82,4 +84,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ir: MatIconRegistry, ds: DomSanitizer) {
+    loadSvgResoures(ir, ds);
+  }
+}
