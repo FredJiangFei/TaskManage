@@ -12,8 +12,8 @@ import { avatars } from '../_utils/svg.util';
 export class MismatchErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     if (!control) {
-       return false;
-     }
+      return false;
+    }
     const parentInvalid = !!(control.parent && control.parent.hasError('mismatch'));
     return control.touched && (control.invalid || parentInvalid);
   }
@@ -44,25 +44,27 @@ export class RegisterComponent implements OnInit {
           password: ['', [Validators.required, Validators.minLength(6), PasswordValidators.format]],
           confirmpassword: ['']
         }, {
-          validator: PasswordValidators.shouldEqualToPassowrd
-        }),
+            validator: PasswordValidators.shouldEqualToPassowrd
+          }),
         birthday: ['']
       });
   }
 
   register(value: any) {
-      const user: RegisterCommand = {
-        username: value.username,
-        birthday: value.birthday,
-        avatar: this.choosedAavtar,
-        password: value.passwordGroup['password']
-     };
-     this.authService.register(user)
-     .subscribe(_ => {
+    const user: RegisterCommand = {
+      username: value.username,
+      birthday: value.birthday,
+      avatar: this.choosedAavtar,
+      password: value.passwordGroup['password']
+    };
+    this.authService.register(user)
+      .subscribe(_ => {
         this.registerForm.reset();
         this.alertify.success('Register success');
         this.router.navigate(['/login']);
-      });
+      },
+        error => this.alertify.error(error.message)
+      );
   }
 
   selectAvatar(avatar) {

@@ -16,6 +16,13 @@
       "birthday": "2018-09-17T16:00:00.000Z",
       "password": "password1",
       "id": 3
+    },
+    {
+      "username": "Simon2",
+      "birthday": "",
+      "avatar": "man",
+      "password": "password1",
+      "id": 4
     }
   ]
 }
