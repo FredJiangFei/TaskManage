@@ -1,3 +1,5 @@
+import { TaskLine } from './../_models/taskLine';
+import { Observable } from 'rxjs';
 import { TasksService } from './../_services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-
+  taskLins$: Observable<TaskLine[]>;
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
@@ -15,6 +17,6 @@ export class TasksComponent implements OnInit {
   }
 
   loadTaskLines() {
-    this.tasksService.getAll().subscribe(console.log);
+   this.taskLins$ =  this.tasksService.getAll();
   }
 }
