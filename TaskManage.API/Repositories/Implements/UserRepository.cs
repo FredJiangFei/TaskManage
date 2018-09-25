@@ -20,5 +20,23 @@ namespace TaskManage.API.Data
             await _context.SaveChangesAsync();
             return user;
         }
+
+        public async Task<User> Login(string username, string password)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Username == username);
+
+            if (user == null || user.Password != password)
+                return null;
+
+            return user;
+        }
+
+        public async Task<bool> UserExists(string username)
+        {
+            if (await _context.Users.AnyAsync(x => x.Username == username))
+                return true;
+
+            return false;
+        }
     }
 }

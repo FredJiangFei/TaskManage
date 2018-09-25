@@ -24,4 +24,11 @@ public class UsersController : ControllerBase
         var result = await _userRepository.Register(userToCreate);
         return Ok(result);
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(UserForLoginDto dto)
+    {
+        var result = await _userRepository.Login(dto.Username, dto.Password);
+        return Ok(result);
+    }
 }
