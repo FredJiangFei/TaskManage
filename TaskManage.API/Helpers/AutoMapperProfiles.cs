@@ -9,6 +9,7 @@ namespace TaskManage.API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<UserForRegisterDto, User>();
+            CreateMap<User, UserDetailDto>();
         }
     }
 }
