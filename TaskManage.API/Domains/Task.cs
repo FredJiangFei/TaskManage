@@ -9,4 +9,5 @@ public class Task
     public DateTime DueDate { get; set; }
     public DateTime Created { get; set; }
     public TaskLine Line { get; set; }
+    public int LineId { get; set; }
 }

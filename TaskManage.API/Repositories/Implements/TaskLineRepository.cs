@@ -14,6 +14,7 @@ namespace TaskManage.API.Data
 
         public async Task<TaskLine> Add(TaskLine line)
         {
+            line.Created = DateTime.Now;
             await _context.TaskLines.AddAsync(line);
             await _context.SaveChangesAsync();
             return line;

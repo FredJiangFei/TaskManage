@@ -10,6 +10,9 @@ namespace TaskManage.API.Helpers
         {
             CreateMap<UserForRegisterDto, User>();
             CreateMap<User, UserDetailDto>();
+
+            CreateMap<TaskLineAddDto, TaskLine>();
+            CreateMap<TaskAddDto, Task>();
         }
     }
 }

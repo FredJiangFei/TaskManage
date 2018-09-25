@@ -14,7 +14,8 @@ namespace TaskManage.API.Data
 
         public async Task<Task> Add(Task task)
         {
-           await _context.Tasks.AddAsync(task);
+            task.Created = DateTime.Now;
+            await _context.Tasks.AddAsync(task);
             await _context.SaveChangesAsync();
             return task;
         }

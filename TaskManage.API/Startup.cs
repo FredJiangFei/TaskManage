@@ -33,6 +33,8 @@ namespace TaskManage.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITaskLineRepository, TaskLineRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddAutoMapper();
         }
 

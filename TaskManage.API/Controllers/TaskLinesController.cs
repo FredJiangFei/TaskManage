@@ -14,27 +14,27 @@ using TaskManage.API.Helpers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TasksController : ControllerBase
+public class TaskLinesController : ControllerBase
 {
-    private readonly ITaskRepository _taskRepository;
+    private readonly ITaskLineRepository _taskLineRepository;
     private readonly IMapper _mapper;
     private readonly IConfiguration _config;
 
-    public TasksController(
-        ITaskRepository taskRepository,
+    public TaskLinesController(
+        ITaskLineRepository taskLineRepository,
         IMapper mapper,
         IConfiguration config)
     {
-        _taskRepository = taskRepository;
+        _taskLineRepository = taskLineRepository;
         _mapper = mapper;
         _config = config;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add(TaskAddDto dto)
-    {
-         var task = _mapper.Map<Task>(dto);
-        var result = await _taskRepository.Add(task);
+    public async Task<IActionResult> Add(TaskLineAddDto dto)
+    { 
+        var taskLine = _mapper.Map<TaskLine>(dto);
+        var result = await _taskLineRepository.Add(taskLine);
         return Ok(result);
     }
 }
