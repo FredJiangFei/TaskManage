@@ -39,6 +39,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { loadSvgResoures } from './_utils/svg.util';
+import { AvatarSelectComponent } from './_customer_controls/avatar-select/avatar-select.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { loadSvgResoures } from './_utils/svg.util';
     NotFoundComponent,
     TasksComponent,
     PasswordDirective,
-    SpinnerDirective
+    SpinnerDirective,
+    AvatarSelectComponent
   ],
   imports: [
     BrowserModule,
