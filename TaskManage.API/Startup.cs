@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,8 @@ namespace TaskManage.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,7 +42,6 @@ namespace TaskManage.API
             {
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseMvc();
         }
