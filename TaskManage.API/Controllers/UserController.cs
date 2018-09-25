@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
-using DatingApp.API.Dtos;
+using TaskManage.API.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using TaskManage.API.Data;
 

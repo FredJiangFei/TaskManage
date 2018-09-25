@@ -1,8 +1,8 @@
 using System.Linq;
 using AutoMapper;
-using DatingApp.API.Dtos;
+using TaskManage.API.Dtos;
 
-namespace DatingApp.API.Helpers
+namespace TaskManage.API.Helpers
 {
     public class AutoMapperProfiles : Profile
     {

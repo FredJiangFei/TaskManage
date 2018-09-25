@@ -16,6 +16,9 @@ namespace TaskManage.API.Data
 
         public async Task<User> Register(User user)
         {
+            if (await _context.Users.AnyAsync(x => x.Username == user.Username))
+             throw new Exception("User exist");
+
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             return user;
@@ -29,14 +32,6 @@ namespace TaskManage.API.Data
                 return null;
 
             return user;
-        }
-
-        public async Task<bool> UserExists(string username)
-        {
-            if (await _context.Users.AnyAsync(x => x.Username == username))
-                return true;
-
-            return false;
         }
     }
 }

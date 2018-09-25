@@ -1,4 +1,4 @@
-namespace DatingApp.API.Dtos
+namespace TaskManage.API.Dtos
 {
     public class UserForLoginDto
     {
