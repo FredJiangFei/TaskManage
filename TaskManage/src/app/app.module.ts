@@ -40,6 +40,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { loadSvgResoures } from './_utils/svg.util';
 import { AvatarSelectComponent } from './_customer_controls/avatar-select/avatar-select.component';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { AvatarSelectComponent } from './_customer_controls/avatar-select/avatar
     MatChipsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ErrorInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

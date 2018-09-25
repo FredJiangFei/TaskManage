@@ -61,9 +61,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm.reset();
         this.alertify.success('Register success');
         this.router.navigate(['/login']);
-      },
-        error => this.alertify.error(error.message)
-      );
+      });
   }
 
   get password() {

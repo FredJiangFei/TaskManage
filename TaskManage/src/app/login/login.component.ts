@@ -34,7 +34,7 @@ export class LoginComponent {
              const returnUrl = this.activedRoute.snapshot.queryParamMap.get('returnUrl');
              this.router.navigate([returnUrl || '/']);
          }
-      }, err => this.alertify.error(err.message));
+      });
 
     }, 500);
   }
