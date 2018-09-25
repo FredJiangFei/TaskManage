@@ -42,6 +42,7 @@ public class TaskLinesController : ControllerBase
     public async Task<IActionResult> GetAll()
     { 
         var result = await _taskLineRepository.GetAll();
-        return Ok(result);
+        var taskLines = _mapper.Map<IEnumerable<TaskLineDto>>(result);
+        return Ok(taskLines);
     }
 }

@@ -12,7 +12,7 @@ const routes: Routes = [
         component: HomeComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: 'tasks', loadChildren: './tasks/task.module#TaskModule' },
+            { path: 'tasks', loadChildren: './task/task.module#TaskModule' },
         ]
     },
     { path: 'login', component: LoginComponent },

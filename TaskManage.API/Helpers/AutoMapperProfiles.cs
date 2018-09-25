@@ -13,6 +13,8 @@ namespace TaskManage.API.Helpers
 
             CreateMap<TaskLineAddDto, TaskLine>();
             CreateMap<TaskAddDto, Task>();
+
+            CreateMap<TaskLine, TaskLineDto>();
         }
     }
 }
