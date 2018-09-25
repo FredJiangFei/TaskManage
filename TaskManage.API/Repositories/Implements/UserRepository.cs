@@ -29,7 +29,7 @@ namespace TaskManage.API.Data
             var user = await _context.Users.SingleOrDefaultAsync(x => x.Username == username);
 
             if (user == null || user.Password != password)
-                return null;
+                throw new Exception("Username or password is incorrect.");
 
             return user;
         }
