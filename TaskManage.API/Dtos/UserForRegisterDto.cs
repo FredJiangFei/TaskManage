@@ -13,7 +13,6 @@ namespace TaskManage.API.Dtos
         ]
         public string Password { get; set; }
         public string Avatar { get; set; }
-        [Range(typeof(DateTime), "1918-1-1", "2000-1-1")]
         public DateTime? Birthday { get; set; }
     }
 }

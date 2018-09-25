@@ -7,7 +7,6 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PasswordDirective } from './_directives/password.directive';
@@ -49,7 +48,6 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
-    TasksComponent,
     PasswordDirective,
     SpinnerDirective,
     AvatarSelectComponent

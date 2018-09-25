@@ -5,7 +5,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
     {
@@ -13,7 +12,7 @@ const routes: Routes = [
         component: HomeComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: 'tasks', component: TasksComponent },
+            { path: 'tasks', loadChildren: './tasks/task.module#TaskModule' },
         ]
     },
     { path: 'login', component: LoginComponent },
