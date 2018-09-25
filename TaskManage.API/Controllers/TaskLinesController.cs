@@ -37,4 +37,11 @@ public class TaskLinesController : ControllerBase
         var result = await _taskLineRepository.Add(taskLine);
         return Ok(result);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    { 
+        var result = await _taskLineRepository.GetAll();
+        return Ok(result);
+    }
 }

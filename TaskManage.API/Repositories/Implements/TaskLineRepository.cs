@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskManage.API.Data
 {
@@ -32,7 +34,8 @@ namespace TaskManage.API.Data
 
         public async Task<TaskLine[]> GetAll()
         {
-            throw new NotImplementedException();
+            var lines = await _context.TaskLines.Include(x=>x.Tasks).ToArrayAsync();
+            return lines;
         }
     }
 }
