@@ -38,6 +38,21 @@ public class TaskLinesController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPut]
+    public async Task<IActionResult> Edit(TaskLineEditDto dto)
+    { 
+        var taskLine = _mapper.Map<TaskLine>(dto);
+        var result = await _taskLineRepository.Edit(taskLine);
+        return Ok(result);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    { 
+        _taskLineRepository.Delete(id);
+        return Ok();
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetAll()
     { 

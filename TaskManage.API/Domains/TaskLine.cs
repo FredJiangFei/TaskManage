@@ -8,4 +8,9 @@ public class TaskLine
     public int Order { get; set; }
     public DateTime Created { get; set; }
     public ICollection<Task> Tasks { get; set; }
+
+    public void Edit(string title)
+    {
+        this.Title = title;
+    }
 }

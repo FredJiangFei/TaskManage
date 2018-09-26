@@ -3,12 +3,12 @@
 <mat-dialog-content>
     <mat-form-field>
         <mat-label>Title</mat-label>
-        <input matInput type="text" #title>
+        <input matInput type="text" [(ngModel)]="title">
     </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <div class="fill-remaining-place"></div>
-  <button mat-raised-button (click)="save(title.value)">Save</button>
+  <button mat-raised-button (click)="save()">Save</button>
   <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>

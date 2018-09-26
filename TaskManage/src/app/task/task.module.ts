@@ -6,6 +6,7 @@ import { TaskComponent } from './task/task.component';
 import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
 import { ShareModule } from '../share.module';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { DelModalComponent } from './del-modal/del-modal.component';
 
 @NgModule({
   imports: [
@@ -17,8 +18,9 @@ import { NewTaskComponent } from './new-task/new-task.component';
     TaskLineComponent,
     TaskComponent,
     NewTaskLineComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    DelModalComponent
   ],
-  entryComponents: [NewTaskLineComponent, NewTaskComponent]
+  entryComponents: [NewTaskLineComponent, NewTaskComponent, DelModalComponent]
 })
 export class TaskModule {}

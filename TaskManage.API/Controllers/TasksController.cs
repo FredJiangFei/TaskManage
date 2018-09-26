@@ -37,4 +37,19 @@ public class TasksController : ControllerBase
         var result = await _taskRepository.Add(task);
         return Ok(result);
     }
+
+     [HttpPut]
+    public async Task<IActionResult> Edit(TaskEditDto dto)
+    { 
+        var task = _mapper.Map<Task>(dto);
+        var result = await _taskRepository.Edit(task);
+        return Ok(result);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    { 
+        _taskRepository.Delete(id);
+        return Ok();
+    }
 }

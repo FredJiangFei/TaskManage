@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-new-task-line',
@@ -7,10 +7,17 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./new-task-line.component.css']
 })
 export class NewTaskLineComponent {
+  title: string;
 
-  constructor(private dialogRef: MatDialogRef<NewTaskLineComponent>) { }
+  constructor(
+    private dialogRef: MatDialogRef<NewTaskLineComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      if (data) {
+        this.title = data.line.title;
+      }
+    }
 
-  save(title: string) {
-   this.dialogRef.close(title);
+  save() {
+   this.dialogRef.close(this.title);
   }
 }

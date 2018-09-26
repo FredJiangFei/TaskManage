@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskManage.API.Data
 {
@@ -20,14 +22,19 @@ namespace TaskManage.API.Data
             return task;
         }
 
-        public async void Delete(int id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var lineGet = _context.Tasks.SingleOrDefault(x=>x.Id == id);
+            _context.Remove(lineGet);
+            _context.SaveChangesAsync();
         }
 
         public async Task<Task> Edit(Task task)
         {
-            throw new NotImplementedException();
+            var taskGet = await _context.Tasks.SingleOrDefaultAsync(x => x.Id == task.Id);
+            taskGet.Edit(task.Title, task.Description, task.DueDate);
+            await _context.SaveChangesAsync();
+            return taskGet;
         }
 
         public async Task<Task[]> GetAll()

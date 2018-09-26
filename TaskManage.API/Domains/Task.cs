@@ -11,4 +11,10 @@ public class Task
     public bool Completed { get; set; }
     public TaskLine Line { get; set; }
     public int LineId { get; set; }
+
+    public void Edit(string title, string description, DateTime dueDate){
+        Title = title;
+        Description = description;
+        DueDate = dueDate;
+    }
 }
