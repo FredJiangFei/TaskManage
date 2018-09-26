@@ -9,14 +9,14 @@ using TaskManage.API.Data;
 namespace TaskManage.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180925032830_AddUser")]
+    [Migration("20180926014258_AddUser")]
     partial class AddUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932");
+                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065");
 
             modelBuilder.Entity("User", b =>
                 {
@@ -27,7 +27,9 @@ namespace TaskManage.API.Migrations
 
                     b.Property<DateTime>("Birthday");
 
-                    b.Property<string>("Password");
+                    b.Property<byte[]>("PasswordHash");
+
+                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("Username");
 

@@ -6,7 +6,7 @@ namespace TaskManage.API.Data
 {
     public interface IUserRepository
     {
-         Task<User> Register(User user);
+         Task<User> Register(User user, string password);
          Task<User> Login(string username, string password);
     }
 }

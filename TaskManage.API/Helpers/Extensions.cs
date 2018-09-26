@@ -19,7 +19,7 @@ namespace TaskManage.API.Helpers
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
 
-         public static string GenerateJwtToken(this User user, string settingToken)
+        public static string GenerateJwtToken(this User user, string settingToken)
         {
             var claims = new List<Claim>
             {
@@ -41,6 +41,28 @@ namespace TaskManage.API.Helpers
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        public static void CreatePasswordHash(this string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        public static bool VerifyPasswordHash(this string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != passwordHash[i]) return false;
+                }
+                return true;
+            }
         }
     }
 }

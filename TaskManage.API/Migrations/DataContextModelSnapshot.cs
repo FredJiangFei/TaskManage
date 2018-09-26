@@ -16,46 +16,6 @@ namespace TaskManage.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.3-rtm-32065");
 
-            modelBuilder.Entity("Task", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<string>("Description");
-
-                    b.Property<DateTime>("DueDate");
-
-                    b.Property<int>("LineId");
-
-                    b.Property<int>("Order");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LineId");
-
-                    b.ToTable("Tasks");
-                });
-
-            modelBuilder.Entity("TaskLine", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<int>("Order");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TaskLines");
-                });
-
             modelBuilder.Entity("User", b =>
                 {
                     b.Property<int>("Id")
@@ -65,21 +25,15 @@ namespace TaskManage.API.Migrations
 
                     b.Property<DateTime>("Birthday");
 
-                    b.Property<string>("Password");
+                    b.Property<byte[]>("PasswordHash");
+
+                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("Username");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Task", b =>
-                {
-                    b.HasOne("TaskLine", "Line")
-                        .WithMany("Tasks")
-                        .HasForeignKey("LineId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

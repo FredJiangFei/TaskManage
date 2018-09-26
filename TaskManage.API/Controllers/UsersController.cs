@@ -34,7 +34,7 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> Register(UserForRegisterDto dto)
     {
         var userToCreate = _mapper.Map<User>(dto);
-        var result = await _userRepository.Register(userToCreate);
+        var result = await _userRepository.Register(userToCreate, dto.Password);
         return Ok(result);
     }
 
@@ -44,7 +44,7 @@ public class UsersController : ControllerBase
         var result = await _userRepository.Login(dto.Username, dto.Password);
         var token = _config.GetSection("AppSettings:Token").Value;
         var userReturn = _mapper.Map<UserDetailDto>(result);
-        
+
         return Ok(new
         {
             token = result.GenerateJwtToken(token),
