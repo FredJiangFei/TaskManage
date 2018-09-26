@@ -1,0 +1,31 @@
+<div mat-subheader class="header-container">
+  <div>
+    <h3>{{line.title}}</h3>
+  </div>
+
+  <div class="fill">
+    <button mat-button (click)="showAddTaskModal()">
+      <mat-icon>add_circle_outline</mat-icon>
+      <span>New task</span>
+    </button>
+  </div>
+
+  <div>
+      <button mat-icon-button [matMenuTriggerFor]="taskMenu">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+    </div>
+</div>
+
+<mat-menu #taskMenu="matMenu">
+    <button mat-menu-item (click)="showEditModal()">
+      <span>Edit</span>
+    </button>
+    <button mat-menu-item (click)="showDeleteModal()">
+      <span>Delete</span>
+    </button>
+  </mat-menu>
+
+<mat-list role="list">
+  <app-task *ngFor="let task of line.tasks" [task]="task"></app-task>
+</mat-list>

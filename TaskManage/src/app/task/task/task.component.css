@@ -1,0 +1,16 @@
+:host{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid lightgray;
+    margin-bottom: 5px;
+}
+
+.task-check{
+    order:-1;
+    margin-right: 20px;
+}
+
+mat-list-item {
+    width: 100%;
+}

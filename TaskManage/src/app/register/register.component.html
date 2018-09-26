@@ -42,11 +42,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <mat-grid-list cols="5">
-          <mat-grid-tile class="hand" *ngFor ="let avatar of avatars" [class.choosedAvatar]="choosedAavtar == avatar">
-            <mat-icon [svgIcon]="avatar" class="avatar" (click)="selectAvatar(avatar)"></mat-icon>
-          </mat-grid-tile>
-        </mat-grid-list>
+        <app-avatar-select formControlName="avatar"></app-avatar-select>
     </mat-card-content>
 
     <mat-card-actions [align]="'end'">

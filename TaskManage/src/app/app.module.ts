@@ -7,7 +7,6 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PasswordDirective } from './_directives/password.directive';
@@ -39,6 +38,9 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { loadSvgResoures } from './_utils/svg.util';
+import { AvatarSelectComponent } from './_customer_controls/avatar-select/avatar-select.component';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { ShareModule } from './share.module';
 
 @NgModule({
   declarations: [
@@ -47,41 +49,15 @@ import { loadSvgResoures } from './_utils/svg.util';
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
-    TasksComponent,
-    PasswordDirective,
-    SpinnerDirective
+    AvatarSelectComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    LaddaModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatInputModule,
-    MatListModule,
-    MatSlideToggleModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatAutocompleteModule,
-    MatMenuModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatTabsModule,
-    MatBadgeModule,
-    MatChipsModule,
+    ShareModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ErrorInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

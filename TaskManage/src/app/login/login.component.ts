@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginCommand } from '../_commands/login.command';
-import { AlertifyService } from '../_services/alertify.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -19,13 +18,11 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activedRoute: ActivatedRoute,
-    private alertify: AlertifyService) { }
+    private activedRoute: ActivatedRoute) { }
 
   login() {
     this.logining = true;
-    setTimeout(() => {
-      this.authService.login(this.user)
+    this.authService.login(this.user)
       .pipe(
         finalize(() => this.logining = false)
       )
@@ -34,8 +31,6 @@ export class LoginComponent {
              const returnUrl = this.activedRoute.snapshot.queryParamMap.get('returnUrl');
              this.router.navigate([returnUrl || '/']);
          }
-      }, err => this.alertify.error(err.message));
-
-    }, 500);
+      });
   }
 }

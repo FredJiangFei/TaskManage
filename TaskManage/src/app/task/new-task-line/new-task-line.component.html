@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Add task line</h2>
+
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput type="text" [(ngModel)]="title">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="fill-remaining-place"></div>
+  <button mat-raised-button (click)="save()" [appSpinner]="saving">Save</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

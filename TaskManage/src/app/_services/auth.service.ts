@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../_models/user';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { LoginCommand } from '../_commands/login.command';
 import { RegisterCommand } from '../_commands/register.command';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  jwtService = new JwtHelperService();
   constructor(private http: HttpClient) { }
 
   LoggedIn() {
-    const user = localStorage.getItem('loginUser');
-    return !!user;
+    const token = localStorage.getItem('token');
+    return !this.jwtService.isTokenExpired(token);
   }
 
   LoggedUser(): User {
@@ -23,42 +25,21 @@ export class AuthService {
   }
 
   login(user: LoginCommand) {
-    return this.http.get<User>(`${environment.baseUrl}/users`, {
-      params: {
-        username: user.username,
-        password: user.password
-      }
-    })
+    return this.http.post<User>(`${environment.baseUrl}/users/login`, user)
     .pipe(
-      tap(response => {
-        const loginUser = response[0];
-        if (!!loginUser) {
-          localStorage.setItem('loginUser', JSON.stringify(loginUser));
-        } else {
-          throw new Error('Username or password is wrong');
-        }
+      tap((response: any) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('loginUser', JSON.stringify(response.user));
       })
     );
   }
 
   register(user: RegisterCommand) {
-    return this.http.get<User>(`${environment.baseUrl}/users`, {
-      params: {
-        username: user.username
-      }
-    })
-    .pipe(
-      tap(response => {
-        const loginUser = response[0];
-        if (!!loginUser) {
-          throw new Error('User exist');
-        }
-      }),
-      switchMap(_ => this.http.post(`${environment.baseUrl}/users`, user))
-    );
+    return this.http.post(`${environment.baseUrl}/users/register`, user);
   }
 
   logout() {
+    localStorage.removeItem('token');
     localStorage.removeItem('loginUser');
   }
 }

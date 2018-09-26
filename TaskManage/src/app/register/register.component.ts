@@ -27,8 +27,6 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   mismatchMatcher = new MismatchErrorStateMatcher();
-  avatars = avatars;
-  choosedAavtar = avatars[0];
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +44,8 @@ export class RegisterComponent implements OnInit {
         }, {
             validator: PasswordValidators.shouldEqualToPassowrd
           }),
-        birthday: ['']
+        birthday: [''],
+        avatar: [avatars[0]]
       });
   }
 
@@ -54,7 +53,7 @@ export class RegisterComponent implements OnInit {
     const user: RegisterCommand = {
       username: value.username,
       birthday: value.birthday,
-      avatar: this.choosedAavtar,
+      avatar: value.avatar,
       password: value.passwordGroup['password']
     };
     this.authService.register(user)
@@ -62,13 +61,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm.reset();
         this.alertify.success('Register success');
         this.router.navigate(['/login']);
-      },
-        error => this.alertify.error(error.message)
-      );
-  }
-
-  selectAvatar(avatar) {
-    this.choosedAavtar = avatar;
+      });
   }
 
   get password() {
