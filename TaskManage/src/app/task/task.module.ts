@@ -28,6 +28,7 @@ import {
   MatBadgeModule,
   MatChipsModule
 } from '@angular/material';
+import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,7 @@ import {
     MatBadgeModule,
     MatChipsModule,
   ],
-  declarations: [TasksComponent, TaskLineComponent, TaskComponent],
-  entryComponents: []
+  declarations: [TasksComponent, TaskLineComponent, TaskComponent, NewTaskLineComponent],
+  entryComponents: [NewTaskLineComponent]
 })
 export class TaskModule {}

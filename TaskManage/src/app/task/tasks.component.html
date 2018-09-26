@@ -1,3 +1,7 @@
 <div class="task-lines-container">
   <app-task-line *ngFor="let line of taskLins$ | async" [line]="line"></app-task-line>
 </div>
+
+<button class="fab-button" mat-fab type="button" (click)="openAddTaskLineDialog()">
+  <mat-icon>add</mat-icon>
+</button>
