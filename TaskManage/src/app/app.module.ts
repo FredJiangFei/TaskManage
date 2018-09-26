@@ -40,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { loadSvgResoures } from './_utils/svg.util';
 import { AvatarSelectComponent } from './_customer_controls/avatar-select/avatar-select.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { ShareModule } from './share.module';
 
 @NgModule({
   declarations: [
@@ -48,38 +49,12 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
-    PasswordDirective,
-    SpinnerDirective,
     AvatarSelectComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    LaddaModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatInputModule,
-    MatListModule,
-    MatSlideToggleModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatAutocompleteModule,
-    MatMenuModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatTabsModule,
-    MatBadgeModule,
-    MatChipsModule,
+    ShareModule,
     AppRoutingModule
   ],
   providers: [ErrorInterceptorProvider],
