@@ -13,19 +13,10 @@ export class TasksComponent implements OnInit {
   constructor(private tasksService: TasksService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.loadTaskLines();
-  }
-
-  loadTaskLines() {
     this.tasksService.getAll().subscribe();
   }
 
-  openAddTaskLineDialog() {
-    const dialogRef = this.dialog.open(NewTaskLineComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.tasksService.addLine(result).subscribe();
-      }
-    });
+  showAddModal() {
+    this.dialog.open(NewTaskLineComponent);
   }
 }

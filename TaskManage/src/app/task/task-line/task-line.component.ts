@@ -18,28 +18,12 @@ export class TaskLineComponent {
   constructor(private dialog: MatDialog, private tasksService: TasksService) { }
 
   showAddTaskModal() {
-    const dialog = this.dialog.open(NewTaskComponent, {
-      data: { }
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      if (result) {
-        result.lineId = this.line.id;
-        this.tasksService.addTask(result).subscribe();
-      }
+    this.dialog.open(NewTaskComponent, { data: { lineId: this.line.id }
     });
   }
 
   showEditModal() {
-    const dialog = this.dialog.open(NewTaskLineComponent, {
-      data: this.line
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.tasksService.editLine(this.line.id, result).subscribe();
-      }
-    });
+    this.dialog.open(NewTaskLineComponent, { data: this.line });
   }
 
   showDeleteModal() {

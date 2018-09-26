@@ -10,25 +10,14 @@ import { NewTaskComponent } from '../new-task/new-task.component';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
   @Input()
   task: Task;
 
   constructor(private dialog: MatDialog, private tasksService: TasksService) { }
 
-  ngOnInit() {
-  }
-
   showEditModal() {
-    const dialog = this.dialog.open(NewTaskComponent, {
-      data: Object.assign({}, this.task)
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.tasksService.editTask(result).subscribe();
-      }
-    });
+   this.dialog.open(NewTaskComponent, { data: Object.assign({}, this.task) });
   }
 
   showDeleteModal() {
