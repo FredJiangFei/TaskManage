@@ -1,5 +1,3 @@
-import { TaskLine } from './../_models/taskLine';
-import { Observable } from 'rxjs';
 import { TasksService } from './../_services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
@@ -11,7 +9,7 @@ import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  taskLins$ = this.tasksService.tasks$;
+  taskLines$ = this.tasksService.tasks$;
   constructor(private tasksService: TasksService, private dialog: MatDialog) { }
 
   ngOnInit() {
