@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TaskLine } from '../../_models/taskLine';
 
 @Component({
   selector: 'app-new-task-line',
@@ -11,9 +12,9 @@ export class NewTaskLineComponent {
 
   constructor(
     private dialogRef: MatDialogRef<NewTaskLineComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: TaskLine) {
       if (data) {
-        this.title = data.line.title;
+        this.title = data.title;
       }
     }
 

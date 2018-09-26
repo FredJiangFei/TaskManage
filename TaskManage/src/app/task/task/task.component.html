@@ -1,4 +1,11 @@
 <mat-list-item>
+  <button mat-icon-button  (click)="showEditModal()">
+      <mat-icon>edit</mat-icon>
+  </button>
+  
+  <button mat-icon-button  (click)="showDeleteModal()">
+      <mat-icon>delete</mat-icon>
+  </button>
   <mat-checkbox class="task-check"></mat-checkbox>
   <p matLine>{{task.title}}</p>
   <p matLine>{{task.description}}</p>

@@ -18,7 +18,9 @@ export class TaskLineComponent {
   constructor(private dialog: MatDialog, private tasksService: TasksService) { }
 
   showAddTaskModal() {
-    const dialog = this.dialog.open(NewTaskComponent);
+    const dialog = this.dialog.open(NewTaskComponent, {
+      data: { }
+    });
 
     dialog.afterClosed().subscribe(result => {
       if (result) {
@@ -30,9 +32,7 @@ export class TaskLineComponent {
 
   showEditModal() {
     const dialog = this.dialog.open(NewTaskLineComponent, {
-      data: {
-        line: this.line
-      }
+      data: this.line
     });
 
     dialog.afterClosed().subscribe(result => {

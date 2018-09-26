@@ -70,16 +70,20 @@ export class TasksService {
     return this.http.put<Task>(`${environment.baseUrl}/tasks`, task).pipe(
       tap(t => {
         const currentLine = this.tasksSubject.value.find(x => x.id === task.lineId);
-        let currentTask = currentLine.tasks.find(x => x.id === task.id);
-        currentTask = t;
+        const currentTask = currentLine.tasks.find(x => x.id === task.id);
+        currentTask.title = t.title;
+        currentTask.description = t.description;
+        currentTask.duteDate = t.duteDate;
       })
     );
   }
 
-  deleteTask(id: number) {
+  deleteTask(lineId: number, id: number) {
     return this.http.delete<Task>(`${environment.baseUrl}/tasks/${id}`).pipe(
-      tap(t => {
-
+      tap(_ => {
+        const currentLine = this.tasksSubject.value.find(x => x.id === lineId);
+        const  newTasks = currentLine.tasks.filter(t => t.id !== id);
+        currentLine.tasks = newTasks;
       })
     );
   }

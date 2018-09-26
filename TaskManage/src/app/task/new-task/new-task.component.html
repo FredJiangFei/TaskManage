@@ -5,17 +5,17 @@
 
     <mat-form-field class="full-width">
       <mat-label>Title</mat-label>
-      <input matInput type="text" [(ngModel)]="title" name="title">
+      <input matInput type="text" [(ngModel)]="task.title" name="title">
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Description</mat-label>
-      <textarea matInput type="text" [(ngModel)]="description" name="description"></textarea>
+      <textarea matInput type="text" [(ngModel)]="task.description" name="description"></textarea>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>DueDate</mat-label>
-      <input matInput [matDatepicker]="duepicker" [(ngModel)]="duedate" name="duedate" [readonly]="true">
+      <input matInput [matDatepicker]="duepicker" [(ngModel)]="task.duedate" name="duedate" [readonly]="true">
       <mat-datepicker-toggle matSuffix [for]="duepicker"></mat-datepicker-toggle>
       <mat-datepicker #duepicker></mat-datepicker>
     </mat-form-field>    

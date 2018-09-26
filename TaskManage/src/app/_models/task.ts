@@ -6,4 +6,5 @@ export interface Task {
   completed: boolean;
   duteDate: Date;
   created: Date;
+  lineId: number;
 }

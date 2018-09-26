@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Task } from '../../_models/task';
 
 @Component({
   selector: 'app-new-task',
@@ -7,10 +8,15 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./new-task.component.css']
 })
 export class NewTaskComponent {
+  task: Task;
 
-  constructor(private dialogRef: MatDialogRef<NewTaskComponent>) { }
+  constructor(
+    private dialogRef: MatDialogRef<NewTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Task) {
+      this.task = data;
+    }
 
-  save(value: any) {
-    this.dialogRef.close(value);
+  save() {
+    this.dialogRef.close(this.task);
   }
 }
