@@ -5,13 +5,20 @@ import { TaskLineComponent } from './task-line/task-line.component';
 import { TaskComponent } from './task/task.component';
 import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
 import { ShareModule } from '../share.module';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 @NgModule({
   imports: [
     ShareModule,
     TaskRoutingModule,
   ],
-  declarations: [TasksComponent, TaskLineComponent, TaskComponent, NewTaskLineComponent],
-  entryComponents: [NewTaskLineComponent]
+  declarations: [
+    TasksComponent,
+    TaskLineComponent,
+    TaskComponent,
+    NewTaskLineComponent,
+    NewTaskComponent
+  ],
+  entryComponents: [NewTaskLineComponent, NewTaskComponent]
 })
 export class TaskModule {}

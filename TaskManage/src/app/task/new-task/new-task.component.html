@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Add task</h2>
+<form #newTaskForm="ngForm" (ngSubmit)="save(newTaskForm.value)">
+
+  <mat-dialog-content>
+
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" [(ngModel)]="title" name="title">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput type="text" [(ngModel)]="description" name="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>DueDate</mat-label>
+      <input matInput [matDatepicker]="duepicker" [(ngModel)]="duedate" name="duedate" [readonly]="true">
+      <mat-datepicker-toggle matSuffix [for]="duepicker"></mat-datepicker-toggle>
+      <mat-datepicker #duepicker></mat-datepicker>
+    </mat-form-field>    
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="fill-remaining-place"></div>
+    <button mat-raised-button>Save</button>
+    <button type="button" mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+
+</form>

@@ -24,5 +24,12 @@ export class TasksComponent implements OnInit {
 
   openAddTaskLineDialog() {
     const dialogRef = this.dialog.open(NewTaskLineComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tasksService.addLine(result).subscribe(_ => {
+          this.loadTaskLines();
+        });
+      }
+    });
   }
 }
