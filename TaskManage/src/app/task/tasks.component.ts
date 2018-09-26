@@ -11,7 +11,7 @@ import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  taskLins$: Observable<TaskLine[]>;
+  taskLins$ = this.tasksService.tasks$;
   constructor(private tasksService: TasksService, private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -19,16 +19,14 @@ export class TasksComponent implements OnInit {
   }
 
   loadTaskLines() {
-    this.taskLins$ = this.tasksService.getAll();
+    this.tasksService.getAll().subscribe();
   }
 
   openAddTaskLineDialog() {
     const dialogRef = this.dialog.open(NewTaskLineComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.tasksService.addLine(result).subscribe(_ => {
-          this.loadTaskLines();
-        });
+        this.tasksService.addLine(result).subscribe();
       }
     });
   }
