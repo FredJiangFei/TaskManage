@@ -8,6 +8,7 @@ public class Task
     public int Order { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime Created { get; set; }
+    public bool Completed { get; set; }
     public TaskLine Line { get; set; }
     public int LineId { get; set; }
 }

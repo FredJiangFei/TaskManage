@@ -4,3 +4,8 @@
     flex-wrap: wrap;
     border: 1px solid lightgray;
 }
+
+.task-check{
+    order:-1;
+    margin-right: 20px;
+}
