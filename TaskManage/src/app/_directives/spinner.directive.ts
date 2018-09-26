@@ -1,5 +1,5 @@
 import { Directive, Input, OnChanges, SimpleChanges, ElementRef, Renderer2 } from '@angular/core';
-import { Spinner } from 'node_modules/spin.js';
+import { Spinner } from 'spin.js';
 
 @Directive({
   selector: '[appSpinner]'

@@ -1,7 +1,7 @@
-import { AlertifyService } from './../_services/alertify.service';
-import { PasswordValidators } from './../_validators/password.validator';
+import { AlertifyService } from '../_services/alertify.service';
+import { PasswordValidators } from '../_validators/password.validator';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective, NgForm } from '../../../node_modules/@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterCommand } from '../_commands/register.command';

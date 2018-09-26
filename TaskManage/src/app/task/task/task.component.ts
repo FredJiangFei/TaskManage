@@ -1,17 +1,32 @@
-import { Task } from './../../_models/task';
-import { Component, OnInit, Input } from '@angular/core';
+import { Task } from '../../_models/task';
+import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DelModalComponent } from '../del-modal/del-modal.component';
 import { TasksService } from '../../_services/tasks.service';
 import { NewTaskComponent } from '../new-task/new-task.component';
+import { taskHoverAnim } from '../../_animation/task.animate';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
+  animations: [
+    taskHoverAnim,
+  ]
 })
 export class TaskComponent {
   @Input() task: Task;
+
+  @HostBinding('@taskHover') cardState = 'out';
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.cardState = 'hover';
+  }
+
+  @HostListener('mouseleave')
+  onmouseleave() {
+    this.cardState = 'out';
+  }
 
   constructor(private dialog: MatDialog, private tasksService: TasksService) { }
 

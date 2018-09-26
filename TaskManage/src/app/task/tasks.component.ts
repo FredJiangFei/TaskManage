@@ -1,4 +1,4 @@
-import { TasksService } from './../_services/tasks.service';
+import { TasksService } from '../_services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
