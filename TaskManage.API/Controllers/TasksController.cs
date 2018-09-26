@@ -38,12 +38,19 @@ public class TasksController : ControllerBase
         return Ok(result);
     }
 
-     [HttpPut]
+    [HttpPut]
     public async Task<IActionResult> Edit(TaskEditDto dto)
     { 
         var task = _mapper.Map<Task>(dto);
         var result = await _taskRepository.Edit(task);
         return Ok(result);
+    }
+
+    [HttpPut("toggle-complete/{id}")]
+    public IActionResult ToggleComplete(int id)
+    { 
+        _taskRepository.ToggleComplete(id);
+        return Ok();
     }
 
     [HttpDelete("{id}")]

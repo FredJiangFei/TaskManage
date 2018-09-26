@@ -41,5 +41,12 @@ namespace TaskManage.API.Data
         {
             throw new NotImplementedException();
         }
+
+        public void ToggleComplete(int id)
+        {
+            var task =  _context.Tasks.SingleOrDefault(x => x.Id == id);
+            task.ToggleComplete();
+            _context.SaveChangesAsync();
+        }
     }
 }

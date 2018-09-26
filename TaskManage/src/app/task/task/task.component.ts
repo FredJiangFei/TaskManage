@@ -11,13 +11,16 @@ import { NewTaskComponent } from '../new-task/new-task.component';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent {
-  @Input()
-  task: Task;
+  @Input() task: Task;
 
   constructor(private dialog: MatDialog, private tasksService: TasksService) { }
 
   showEditModal() {
    this.dialog.open(NewTaskComponent, { data: Object.assign({}, this.task) });
+  }
+
+  toggleComplete() {
+      this.tasksService.toggleComplete(this.task.id).subscribe();
   }
 
   showDeleteModal() {

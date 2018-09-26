@@ -17,4 +17,8 @@ public class Task
         Description = description;
         DueDate = dueDate;
     }
+
+    public void ToggleComplete(){
+        Completed = !Completed;
+    }
 }

@@ -8,6 +8,7 @@ namespace TaskManage.API.Data
     {
         Task<Task> Add(Task task);
         Task<Task> Edit(Task task);
+        void ToggleComplete(int id);
         void Delete(int id);
         Task<Task[]> GetAll();
     }

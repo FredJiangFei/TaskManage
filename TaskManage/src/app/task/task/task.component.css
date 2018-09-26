@@ -14,3 +14,7 @@
 mat-list-item {
     width: 100%;
 }
+
+.task-completed p{
+    text-decoration: line-through;
+}

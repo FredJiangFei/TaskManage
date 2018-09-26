@@ -94,4 +94,8 @@ export class TasksService {
         tap(lines => this.tasksSubject.next(lines))
       );
   }
+
+  toggleComplete(id: number) {
+   return this.http.put(`${environment.baseUrl}/tasks/toggle-complete/${id}`, {  });
+  }
 }
