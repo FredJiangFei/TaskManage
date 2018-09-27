@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
 import { slideToRight } from '../_animations/task.animate';
 import { Task } from '../_models/task';
+import { TaskLine } from '../_models/taskLine';
 
 @Component({
   selector: 'app-tasks',
@@ -27,7 +28,9 @@ export class TasksComponent implements OnInit {
     this.dialog.open(NewTaskLineComponent);
   }
 
-  moveTask(task: Task) {
-    console.log(task);
+  moveTask(task: Task, line: TaskLine) {
+    if (task.lineId !== line.id) {
+      this.tasksService.moveTask(task, line.id).subscribe();
+    }
   }
 }

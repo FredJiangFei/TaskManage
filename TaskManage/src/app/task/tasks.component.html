@@ -1,5 +1,5 @@
 <div class="task-lines-container">
-  <app-task-line *ngFor="let line of taskLines$ | async" [line]="line" appDrop (dropped)="moveTask($event)"></app-task-line>
+  <app-task-line *ngFor="let line of taskLines$ | async" [line]="line" appDrop (dropped)="moveTask($event, line)"></app-task-line>
 </div>
 
 <button class="fab-button" mat-fab type="button" (click)="showAddModal()">

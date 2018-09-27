@@ -21,4 +21,8 @@ public class Task
     public void ToggleComplete(){
         Completed = !Completed;
     }
+
+    public void Move(int lineId){
+        LineId = lineId;
+    }
 }

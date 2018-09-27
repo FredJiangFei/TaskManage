@@ -46,9 +46,9 @@ export class TasksService {
     return this.http.delete<TaskLine>(`${environment.baseUrl}/tasklines/${id}`)
       .pipe(
         tap(_ => {
-           let lines = this.tasksSubject.value;
-           lines = lines.filter(line => line.id !== id);
-           this.tasksSubject.next(lines);
+          let lines = this.tasksSubject.value;
+          lines = lines.filter(line => line.id !== id);
+          this.tasksSubject.next(lines);
         })
       );
   }
@@ -82,7 +82,7 @@ export class TasksService {
     return this.http.delete<Task>(`${environment.baseUrl}/tasks/${id}`).pipe(
       tap(_ => {
         const currentLine = this.tasksSubject.value.find(x => x.id === lineId);
-        const  newTasks = currentLine.tasks.filter(t => t.id !== id);
+        const newTasks = currentLine.tasks.filter(t => t.id !== id);
         currentLine.tasks = newTasks;
       })
     );
@@ -96,6 +96,24 @@ export class TasksService {
   }
 
   toggleComplete(id: number) {
-   return this.http.put(`${environment.baseUrl}/tasks/toggle-complete/${id}`, {  });
+    return this.http.put(`${environment.baseUrl}/tasks/toggle-complete/${id}`, {});
+  }
+
+  moveTask(task: Task, newLineId: number) {
+    return this.http.put(`${environment.baseUrl}/tasks/move`, {
+      id: task.id,
+      lineId: newLineId
+    }).pipe(
+      tap(_ => {
+        // remove from old
+        const oldLine = this.tasksSubject.value.find(x => x.id === task.lineId);
+        oldLine.tasks = oldLine.tasks.filter(t => t.id !== task.id);
+
+        // add to new
+        const newLine = this.tasksSubject.value.find(x => x.id === newLineId);
+        task.lineId = newLineId;
+        newLine.tasks = [...newLine.tasks, task];
+      })
+    );
   }
 }

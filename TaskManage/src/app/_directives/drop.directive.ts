@@ -33,7 +33,11 @@ export class DropDirective {
   onDrop(e: Event) {
     e.preventDefault();
     e.stopPropagation();
-    this.dragService.dragData$.subscribe(console.log);
+    this.dragService.dragData$.subscribe(x => {
+      if (x) {
+        this.dropped.emit(x);
+      }
+    });
     this.dragService.clearDragData();
     this.rd.removeStyle(this.el.nativeElement, 'background-color');
   }

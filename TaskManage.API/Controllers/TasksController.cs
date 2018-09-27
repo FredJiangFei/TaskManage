@@ -53,6 +53,13 @@ public class TasksController : ControllerBase
         return Ok();
     }
 
+    [HttpPut("move")]
+    public IActionResult MoveTask(MoveTaskDto dto)
+    { 
+        _taskRepository.MoveTask(dto.Id, dto.LineId);
+        return Ok();
+    }
+
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     { 

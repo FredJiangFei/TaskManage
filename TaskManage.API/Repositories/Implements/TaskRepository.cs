@@ -24,7 +24,7 @@ namespace TaskManage.API.Data
 
         public void Delete(int id)
         {
-            var lineGet = _context.Tasks.SingleOrDefault(x=>x.Id == id);
+            var lineGet = _context.Tasks.SingleOrDefault(x => x.Id == id);
             _context.Remove(lineGet);
             _context.SaveChangesAsync();
         }
@@ -42,9 +42,16 @@ namespace TaskManage.API.Data
             throw new NotImplementedException();
         }
 
+        public void MoveTask(int id, int lineId)
+        {
+            var task = _context.Tasks.SingleOrDefault(x => x.Id == id);
+            task.Move(lineId);
+            _context.SaveChangesAsync();
+        }
+
         public void ToggleComplete(int id)
         {
-            var task =  _context.Tasks.SingleOrDefault(x => x.Id == id);
+            var task = _context.Tasks.SingleOrDefault(x => x.Id == id);
             task.ToggleComplete();
             _context.SaveChangesAsync();
         }
