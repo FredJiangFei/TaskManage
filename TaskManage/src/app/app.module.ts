@@ -7,35 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { PasswordDirective } from './_directives/password.directive';
-import { SpinnerDirective } from './_directives/spinner.directive';
-import { LaddaModule } from 'angular2-ladda';
-import {
-  MatIconModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatSidenavModule,
-  MatCardModule,
-  MatInputModule,
-  MatListModule,
-  MatSlideToggleModule,
-  MatGridListModule,
-  MatDialogModule,
-  MatAutocompleteModule,
-  MatMenuModule,
-  MatCheckboxModule,
-  MatRadioModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatSelectModule,
-  MatPaginatorModule,
-  MatTabsModule,
-  MatBadgeModule,
-  MatChipsModule,
-  MatIconRegistry,
-} from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { loadSvgResoures } from './_utils/svg.util';
 import { AvatarSelectComponent } from './_customer_controls/avatar-select/avatar-select.component';

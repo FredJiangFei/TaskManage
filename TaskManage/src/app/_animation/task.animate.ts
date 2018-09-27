@@ -1,8 +1,0 @@
-import { trigger, state, transition, style, animate } from '@angular/animations';
-
-export const taskHoverAnim = trigger('taskHover', [
-    state('out', style({ transform: 'scale(1)', 'box-shadow': 'none' })),
-    state('hover', style({ transform: 'scale(1.01)', 'box-shadow': '2px 2px 1px 4px #ccc' })),
-    transition('out => hover', animate('100ms ease-in')),
-    transition('hover => out', animate('100ms ease-out')),
-]);

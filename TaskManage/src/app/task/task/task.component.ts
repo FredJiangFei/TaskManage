@@ -1,10 +1,10 @@
 import { Task } from '../../_models/task';
-import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
+import { Component, Input, HostBinding, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DelModalComponent } from '../del-modal/del-modal.component';
 import { TasksService } from '../../_services/tasks.service';
 import { NewTaskComponent } from '../new-task/new-task.component';
-import { taskHoverAnim } from '../../_animation/task.animate';
+import { taskHoverAnim, taskAddAndRemoveAnim } from '../../_animations/task.animate';
 
 @Component({
   selector: 'app-task',
@@ -12,12 +12,14 @@ import { taskHoverAnim } from '../../_animation/task.animate';
   styleUrls: ['./task.component.css'],
   animations: [
     taskHoverAnim,
+    taskAddAndRemoveAnim,
   ]
 })
 export class TaskComponent {
   @Input() task: Task;
-
   @HostBinding('@taskHover') cardState = 'out';
+  @HostBinding('@taskAddAndRemove') itemAnim;
+
   @HostListener('mouseenter')
   onMouseEnter() {
     this.cardState = 'hover';
