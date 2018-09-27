@@ -1,0 +1,7 @@
+{
+  "name": "TaskManage.Mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
