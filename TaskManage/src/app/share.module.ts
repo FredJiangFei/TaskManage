@@ -32,11 +32,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LaddaModule } from 'angular2-ladda';
 import { PasswordDirective } from './_directives/password.directive';
 import { SpinnerDirective } from './_directives/spinner.directive';
+import { DragDirective } from './_directives/drag.directive';
+import { DropDirective } from './_directives/drop.directive';
 
 @NgModule({
     declarations: [
         PasswordDirective,
         SpinnerDirective,
+        DragDirective,
+        DropDirective
     ],
     exports: [
         CommonModule,
@@ -71,6 +75,8 @@ import { SpinnerDirective } from './_directives/spinner.directive';
 
         PasswordDirective,
         SpinnerDirective,
+        DragDirective,
+        DropDirective
     ]
 })
 export class ShareModule { }

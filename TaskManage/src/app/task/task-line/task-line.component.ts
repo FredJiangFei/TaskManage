@@ -5,6 +5,7 @@ import { NewTaskComponent } from '../new-task/new-task.component';
 import { TasksService } from '../../_services/tasks.service';
 import { NewTaskLineComponent } from '../new-task-line/new-task-line.component';
 import { DelModalComponent } from '../del-modal/del-modal.component';
+import { Task } from '../../_models/task';
 
 @Component({
   selector: 'app-task-line',

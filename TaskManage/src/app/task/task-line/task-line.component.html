@@ -1,6 +1,6 @@
 <div mat-subheader class="header-container">
   <div>
-    <h3>{{line.title}}</h3>
+    <h5>{{line.title}}</h5>
   </div>
 
   <div class="fill">
@@ -27,5 +27,5 @@
   </mat-menu>
 
 <mat-list role="list">
-  <app-task *ngFor="let task of line.tasks" [task]="task"></app-task>
+  <app-task *ngFor="let task of line.tasks" [task]="task" appDrag [dragData]="task"></app-task>
 </mat-list>

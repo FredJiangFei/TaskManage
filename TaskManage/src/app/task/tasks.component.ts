@@ -3,6 +3,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NewTaskLineComponent } from './new-task-line/new-task-line.component';
 import { slideToRight } from '../_animations/task.animate';
+import { Task } from '../_models/task';
 
 @Component({
   selector: 'app-tasks',
@@ -24,5 +25,9 @@ export class TasksComponent implements OnInit {
 
   showAddModal() {
     this.dialog.open(NewTaskLineComponent);
+  }
+
+  moveTask(task: Task) {
+    console.log(task);
   }
 }
