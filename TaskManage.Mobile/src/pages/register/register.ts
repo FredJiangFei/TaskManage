@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { RegisterPage } from '../register/register';
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-register',
+  templateUrl: 'register.html',
 })
-export class LoginPage {
+export class RegisterPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  register() {
-    this.navCtrl.push(RegisterPage);
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegisterPage');
   }
 }
