@@ -17,6 +17,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TaskManage.API.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace TaskManage.API
 {
@@ -36,6 +39,19 @@ namespace TaskManage.API
             services.AddScoped<ITaskLineRepository, TaskLineRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddAutoMapper();
+
+             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+               .AddJwtBearer(options =>
+               {
+                   var token = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuerSigningKey = true,
+                       IssuerSigningKey = new SymmetricSecurityKey(token),
+                       ValidateIssuer = false,
+                       ValidateAudience = false
+                   };
+               });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -62,6 +78,8 @@ namespace TaskManage.API
                     }
                 });
             });
+
+             app.UseAuthentication();
              app.UseCors(x => x.WithOrigins("http://localhost:4200")
                             .AllowAnyMethod()
                             .AllowAnyHeader()

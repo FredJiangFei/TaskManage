@@ -13,6 +13,11 @@ import { loadSvgResoures } from './_utils/svg.util';
 import { AvatarSelectComponent } from './_customer_controls/avatar-select/avatar-select.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { ShareModule } from './share.module';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -27,6 +32,12 @@ import { ShareModule } from './share.module';
     BrowserModule,
     BrowserAnimationsModule,
     ShareModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000']
+      }
+    }),
     AppRoutingModule
   ],
   providers: [ErrorInterceptorProvider],

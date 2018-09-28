@@ -11,8 +11,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using TaskManage.API.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
+[Authorize]
 [ApiController]
 public class TasksController : ControllerBase
 {

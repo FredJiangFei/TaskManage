@@ -11,9 +11,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using TaskManage.API.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
@@ -30,6 +32,7 @@ public class UsersController : ControllerBase
         _config = config;
     }
 
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<IActionResult> Register(UserForRegisterDto dto)
     {
@@ -37,7 +40,7 @@ public class UsersController : ControllerBase
         var result = await _userRepository.Register(userToCreate, dto.Password);
         return Ok(result);
     }
-
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> Login(UserForLoginDto dto)
     {
