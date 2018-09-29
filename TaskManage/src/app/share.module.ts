@@ -1,3 +1,4 @@
+import { IdToUserPipe } from './_pipes/id-to-user.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -40,7 +41,8 @@ import { DropDirective } from './_directives/drop.directive';
         PasswordDirective,
         SpinnerDirective,
         DragDirective,
-        DropDirective
+        DropDirective,
+        IdToUserPipe
     ],
     exports: [
         CommonModule,
@@ -76,7 +78,8 @@ import { DropDirective } from './_directives/drop.directive';
         PasswordDirective,
         SpinnerDirective,
         DragDirective,
-        DropDirective
+        DropDirective,
+        IdToUserPipe
     ]
 })
 export class ShareModule { }

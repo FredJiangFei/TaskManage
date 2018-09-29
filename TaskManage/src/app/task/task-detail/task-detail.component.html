@@ -8,10 +8,11 @@
 
 <mat-card-content>
 
-  <mat-form-field>
+  <mat-form-field class="full-width">
     <mat-chip-list #chipList>
-      <mat-chip *ngFor="let userId of userIds" (removed)="removeUser(userId)">
-        {{userId}} <mat-icon matChipRemove>cancel</mat-icon>
+      <mat-chip *ngFor="let user of userIds | idToUser | async" (removed)="removeUser(user.id)">
+        <mat-icon [svgIcon]="user.avatar"></mat-icon> {{user.username}} 
+        <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
     <mat-label>Task users</mat-label>

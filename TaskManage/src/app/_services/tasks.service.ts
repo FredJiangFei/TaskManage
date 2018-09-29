@@ -99,6 +99,12 @@ export class TasksService {
     return this.http.put(`${environment.baseUrl}/tasks/toggle-complete/${id}`, {});
   }
 
+  updateUsers(id: number, userIds: number[]) {
+    return this.http.put(`${environment.baseUrl}/tasks/update-users/${id}`, {
+      userIds: userIds
+    });
+  }
+
   moveTask(task: Task, newLineId: number) {
     return this.http.put(`${environment.baseUrl}/tasks/move`, {
       id: task.id,
