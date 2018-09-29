@@ -1,4 +1,5 @@
-import { LoginPage } from '../login/login';
+import { LoginPage } from './../login/login';
+import { AuthService } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
@@ -11,8 +12,13 @@ import { TaskPage } from '../task/task';
 export class TabsPage {
   tab1 = HomePage;
   tab2 = TaskPage;
-  tab3 = LoginPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private auth: AuthService) { }
+
+  ionViewCanEnter() {
+    if (!this.auth.LoggedIn())
+      this.navCtrl.setRoot(LoginPage);
+    return true;
   }
 }

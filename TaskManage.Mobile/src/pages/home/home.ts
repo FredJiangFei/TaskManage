@@ -1,3 +1,4 @@
+import { AuthService } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -7,8 +8,12 @@ import { LoginPage } from '../login/login';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  constructor(public navCtrl: NavController, private auth: AuthService) {
 
-  constructor(public navCtrl: NavController) {
+  }
 
+  logout() {
+    this.auth.logout();
+    this.navCtrl.setRoot(LoginPage);
   }
 }
