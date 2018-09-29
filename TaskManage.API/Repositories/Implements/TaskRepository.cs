@@ -22,6 +22,20 @@ namespace TaskManage.API.Data
             return task;
         }
 
+        public async System.Threading.Tasks.Task AddUsersToTask(int taskId, ICollection<int> userIds)
+        {
+            var task = await _context.Tasks.SingleOrDefaultAsync(x => x.Id == taskId);
+            foreach (var userId in userIds)
+            {
+                _context.Add<TaskUser>(new TaskUser
+                {
+                    TaskId = taskId,
+                    UserId = userId
+                });
+            }
+            await _context.SaveChangesAsync();
+        }
+
         public void Delete(int id)
         {
             var lineGet = _context.Tasks.SingleOrDefault(x => x.Id == id);

@@ -14,7 +14,7 @@ using TaskManage.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
-[Authorize]
+// [Authorize]
 [ApiController]
 public class TasksController : ControllerBase
 {
@@ -35,14 +35,14 @@ public class TasksController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Add(TaskAddDto dto)
     {
-         var task = _mapper.Map<Task>(dto);
+        var task = _mapper.Map<Task>(dto);
         var result = await _taskRepository.Add(task);
         return Ok(result);
     }
 
     [HttpPut]
     public async Task<IActionResult> Edit(TaskEditDto dto)
-    { 
+    {
         var task = _mapper.Map<Task>(dto);
         var result = await _taskRepository.Edit(task);
         return Ok(result);
@@ -50,21 +50,28 @@ public class TasksController : ControllerBase
 
     [HttpPut("toggle-complete/{id}")]
     public IActionResult ToggleComplete(int id)
-    { 
+    {
         _taskRepository.ToggleComplete(id);
         return Ok();
     }
 
     [HttpPut("move")]
     public IActionResult MoveTask(MoveTaskDto dto)
-    { 
+    {
         _taskRepository.MoveTask(dto.Id, dto.LineId);
+        return Ok();
+    }
+
+    [HttpPut("add-users/{id}")]
+    public async Task<IActionResult> AddUsers(int id, TaskAddUsersDto dto)
+    {
+        await _taskRepository.AddUsersToTask(id, dto.UserIds);
         return Ok();
     }
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
-    { 
+    {
         _taskRepository.Delete(id);
         return Ok();
     }

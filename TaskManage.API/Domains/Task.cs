@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Task
 {
@@ -11,6 +13,7 @@ public class Task
     public bool Completed { get; set; }
     public TaskLine Line { get; set; }
     public int LineId { get; set; }
+    public ICollection<TaskUser> TaskUsers { get; set; }
 
     public void Edit(string title, string description, DateTime dueDate){
         Title = title;
@@ -24,5 +27,9 @@ public class Task
 
     public void Move(int lineId){
         LineId = lineId;
+    }
+
+    public void UpdateUsers(ICollection<User> Users){
+       
     }
 }

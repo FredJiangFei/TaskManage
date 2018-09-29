@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class User
 {
@@ -8,4 +9,5 @@ public class User
     public DateTime Birthday { get; set; }
     public byte[] PasswordHash { get; set; }
     public byte[] PasswordSalt { get; set; }
+    public ICollection<TaskUser> TaskUsers { get; set; }
 }
