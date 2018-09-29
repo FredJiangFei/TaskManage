@@ -1,3 +1,4 @@
+import { UsersService } from './../_services/users.service';
 import { TasksService } from '../_services/tasks.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material';
@@ -18,10 +19,14 @@ export class TasksComponent implements OnInit {
   @HostBinding('@slideAnim') state;
 
   taskLines$ = this.tasksService.tasks$;
-  constructor(private tasksService: TasksService, private dialog: MatDialog) { }
+  constructor(
+    private tasksService: TasksService,
+    private usersService: UsersService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.tasksService.getAll().subscribe();
+    this.usersService.getAll().subscribe();
   }
 
   showAddModal() {

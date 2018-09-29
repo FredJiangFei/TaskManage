@@ -1,12 +1,12 @@
-<mat-list-item [ngClass]="{'task-completed': task.completed}">
-  <button mat-icon-button  (click)="showEditModal()" [disabled]="task.completed">
+<mat-list-item [ngClass]="{'task-completed': task.completed}" (click)="showTaskDetails()">
+  <button mat-icon-button  (click)="showEditModal($event)" [disabled]="task.completed">
       <mat-icon>edit</mat-icon>
   </button>
   
-  <button mat-icon-button  (click)="showDeleteModal()" [disabled]="task.completed">
+  <button mat-icon-button  (click)="showDeleteModal($event)" [disabled]="task.completed">
       <mat-icon>delete</mat-icon>
   </button>
-  <mat-checkbox [(ngModel)]="task.completed" class="task-check" (click)="toggleComplete()"></mat-checkbox>
+  <mat-checkbox [(ngModel)]="task.completed" class="task-check" (click)="toggleComplete($event)"></mat-checkbox>
   <p matLine>{{task.title}}</p>
   <p matLine>{{task.description}}</p>
 </mat-list-item>

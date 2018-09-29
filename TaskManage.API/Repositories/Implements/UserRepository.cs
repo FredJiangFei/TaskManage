@@ -42,5 +42,11 @@ namespace TaskManage.API.Data
 
             return user;
         }
+
+         public async Task<User[]> GetAll()
+        {
+            var users = await _context.Users.ToArrayAsync();
+            return users;
+        }
     }
 }

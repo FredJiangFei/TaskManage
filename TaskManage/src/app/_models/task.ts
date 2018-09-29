@@ -7,4 +7,5 @@ export interface Task {
   duteDate: Date;
   created: Date;
   lineId: number;
+  userIds: number[];
 }

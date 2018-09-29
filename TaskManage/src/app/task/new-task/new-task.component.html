@@ -15,7 +15,7 @@
 
     <mat-form-field class="full-width">
       <mat-label>DueDate</mat-label>
-      <input matInput [matDatepicker]="duepicker" [(ngModel)]="task.duedate" name="duedate" [readonly]="true">
+      <input matInput [matDatepicker]="duepicker" [(ngModel)]="task.duteDate" name="duedate" [readonly]="true">
       <mat-datepicker-toggle matSuffix [for]="duepicker"></mat-datepicker-toggle>
       <mat-datepicker #duepicker></mat-datepicker>
     </mat-form-field>    
@@ -27,5 +27,4 @@
     <button mat-raised-button>Save</button>
     <button type="button" mat-button mat-dialog-close>Cancel</button>
   </mat-dialog-actions>
-
 </form>

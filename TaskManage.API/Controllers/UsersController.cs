@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+// [Authorize]
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
@@ -30,6 +30,14 @@ public class UsersController : ControllerBase
         _userRepository = userRepository;
         _mapper = mapper;
         _config = config;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var users = await _userRepository.GetAll();
+        var result = _mapper.Map<ICollection<UserDetailDto>>(users);
+        return Ok(result);
     }
 
     [AllowAnonymous]

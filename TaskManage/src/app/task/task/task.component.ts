@@ -1,3 +1,4 @@
+import { TaskDetailComponent } from './../task-detail/task-detail.component';
 import { Task } from '../../_models/task';
 import { Component, Input, HostBinding, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material';
@@ -32,20 +33,30 @@ export class TaskComponent {
 
   constructor(private dialog: MatDialog, private tasksService: TasksService) { }
 
-  showEditModal() {
-   this.dialog.open(NewTaskComponent, { data: Object.assign({}, this.task) });
+  showEditModal(e: Event) {
+    e.stopPropagation();
+    this.dialog.open(NewTaskComponent, { data: Object.assign({}, this.task) });
   }
 
-  toggleComplete() {
-      this.tasksService.toggleComplete(this.task.id).subscribe();
+  toggleComplete(e: Event) {
+    e.stopPropagation();
+    this.tasksService.toggleComplete(this.task.id).subscribe();
   }
 
-  showDeleteModal() {
+  showDeleteModal(e: Event) {
+    e.stopPropagation();
     const dialog = this.dialog.open(DelModalComponent);
     dialog.afterClosed().subscribe(result => {
       if (result) {
         this.tasksService.deleteTask(this.task.lineId, this.task.id).subscribe();
       }
+    });
+  }
+
+  showTaskDetails() {
+    this.dialog.open(TaskDetailComponent, {
+      maxWidth: '800px',
+      data: Object.assign({}, this.task)
     });
   }
 }

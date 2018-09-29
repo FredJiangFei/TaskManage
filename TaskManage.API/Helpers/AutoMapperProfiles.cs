@@ -20,8 +20,8 @@ namespace TaskManage.API.Helpers
 
             CreateMap<Task, TaskDto>()
             .ForMember(
-                dest => dest.Users,
-                opt => opt.MapFrom(src => src.TaskUsers.Select(u => u.User))
+                dest => dest.UserIds,
+                opt => opt.MapFrom(src => src.TaskUsers.Select(u => u.UserId))
             );
         }
     }

@@ -14,6 +14,6 @@ namespace TaskManage.API.Dtos
         public bool Completed { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime Created { get; set; }
-        public ICollection<UserDetailDto> Users { get; set; }
+        public ICollection<int> UserIds { get; set; }
     }
 }
