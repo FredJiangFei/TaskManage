@@ -17,6 +17,12 @@ namespace TaskManage.API.Helpers
             CreateMap<TaskEditDto, Task>();
 
             CreateMap<TaskLine, TaskLineDto>();
+
+            CreateMap<Task, TaskDto>()
+            .ForMember(
+                dest => dest.Users,
+                opt => opt.MapFrom(src => src.TaskUsers.Select(u => u.User))
+            );
         }
     }
 }

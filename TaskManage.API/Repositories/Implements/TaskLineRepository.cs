@@ -24,7 +24,7 @@ namespace TaskManage.API.Data
 
         public async Task<TaskLine> Edit(TaskLine line)
         {
-            var lineGet = await _context.TaskLines.SingleOrDefaultAsync(x=>x.Id == line.Id);
+            var lineGet = await _context.TaskLines.SingleOrDefaultAsync(x => x.Id == line.Id);
             lineGet.Edit(line.Title);
             await _context.SaveChangesAsync();
             return lineGet;
@@ -32,14 +32,17 @@ namespace TaskManage.API.Data
 
         public void Delete(int id)
         {
-            var lineGet = _context.TaskLines.SingleOrDefault(x=>x.Id == id);
+            var lineGet = _context.TaskLines.SingleOrDefault(x => x.Id == id);
             _context.Remove(lineGet);
             _context.SaveChangesAsync();
         }
 
         public async Task<TaskLine[]> GetAll()
         {
-            var lines = await _context.TaskLines.Include(x => x.Tasks).ToArrayAsync();
+            var lines = await _context.TaskLines
+            .Include(x => x.Tasks)
+            .ThenInclude(t => t.TaskUsers)
+            .ThenInclude(u => u.User).ToArrayAsync();
             return lines;
         }
     }

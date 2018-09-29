@@ -12,9 +12,10 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using TaskManage.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 [Route("api/[controller]")]
-[Authorize]
+// [Authorize]
 [ApiController]
 public class TaskLinesController : ControllerBase
 {

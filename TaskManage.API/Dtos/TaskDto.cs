@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 
 namespace TaskManage.API.Dtos
 {
@@ -13,5 +14,6 @@ namespace TaskManage.API.Dtos
         public bool Completed { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime Created { get; set; }
+        public ICollection<UserDetailDto> Users { get; set; }
     }
 }
