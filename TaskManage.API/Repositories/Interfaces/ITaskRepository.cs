@@ -11,7 +11,7 @@ namespace TaskManage.API.Data
         void ToggleComplete(int id);
         void MoveTask(int id, int lineId);
         void Delete(int id);
-        System.Threading.Tasks.Task AddUsersToTask(int taskId, ICollection<int> userIds);
+        System.Threading.Tasks.Task UpdateUsers(int taskId, ICollection<int> userIds);
         Task<Task[]> GetAll();
     }
 }

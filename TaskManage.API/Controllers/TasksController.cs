@@ -62,10 +62,10 @@ public class TasksController : ControllerBase
         return Ok();
     }
 
-    [HttpPut("add-users/{id}")]
-    public async Task<IActionResult> AddUsers(int id, TaskAddUsersDto dto)
+    [HttpPut("update-users/{id}")]
+    public async Task<IActionResult> UpdateUsers(int id, UpdateTaskUsersDto dto)
     {
-        await _taskRepository.AddUsersToTask(id, dto.UserIds);
+        await _taskRepository.UpdateUsers(id, dto.UserIds);
         return Ok();
     }
 
