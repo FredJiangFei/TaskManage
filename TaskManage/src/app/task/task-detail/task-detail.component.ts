@@ -1,4 +1,4 @@
-import { map, debounceTime, switchMap } from 'rxjs/operators';
+import { map, debounceTime, switchMap, tap } from 'rxjs/operators';
 import { User } from './../../_models/user';
 import { Observable, fromEvent } from 'rxjs';
 import { UsersService } from './../../_services/users.service';
@@ -29,13 +29,6 @@ export class TaskDetailComponent implements OnInit {
     this.task = this.data;
     this.userIds = this.data.userIds;
     this.resetUserList();
-    // this.users$ = fromEvent(this.usersInput.nativeElement, 'keyup')
-    //   .pipe(
-    //     map((e: any) => e.target.value.toLowerCase()),
-    //     switchMap(v => this.users$.pipe(
-    //       map(us => us.filter(u => u.username.toLowerCase().includes(v))
-    //       )))
-    //   );
   }
 
   removeUser(userId: number) {
@@ -58,6 +51,12 @@ export class TaskDetailComponent implements OnInit {
   }
 
   resetUserList() {
-    this.users$ = this.usersService.users$.pipe(map(users => users.filter(user => !this.userIds.includes(user.id))));
+    const filterByIds$ = this.usersService.users$.pipe(map(us => us.filter(u => !this.userIds.includes(u.id))));
+    this.users$ = filterByIds$;
+    fromEvent(this.usersInput.nativeElement, 'keyup')
+      .subscribe((e: any) => {
+        const v = e.target.value.toLowerCase();
+        this.users$ = filterByIds$.pipe(map(us => us.filter(u => u.username.toLowerCase().includes(v))));
+      });
   }
 }
