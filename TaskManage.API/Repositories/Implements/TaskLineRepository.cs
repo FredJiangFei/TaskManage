@@ -6,20 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TaskManage.API.Data
 {
-    public class TaskLineRepository : ITaskLineRepository
+    public class TaskLineRepository : BaseRepository, ITaskLineRepository
     {
         private readonly DataContext _context;
-        public TaskLineRepository(DataContext context)
+        public TaskLineRepository(DataContext context): base(context)
         {
             _context = context;
-        }
-
-        public async Task<TaskLine> Add(TaskLine line)
-        {
-            line.Created = DateTime.Now;
-            await _context.TaskLines.AddAsync(line);
-            await _context.SaveChangesAsync();
-            return line;
         }
 
         public async Task<TaskLine> Edit(TaskLine line)
@@ -28,13 +20,6 @@ namespace TaskManage.API.Data
             lineGet.Edit(line.Title);
             await _context.SaveChangesAsync();
             return lineGet;
-        }
-
-        public void Delete(int id)
-        {
-            var lineGet = _context.TaskLines.SingleOrDefault(x => x.Id == id);
-            _context.Remove(lineGet);
-            _context.SaveChangesAsync();
         }
 
         public async Task<TaskLine[]> GetAll()

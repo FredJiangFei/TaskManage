@@ -36,7 +36,7 @@ public class TasksController : ControllerBase
     public async Task<IActionResult> Add(TaskAddDto dto)
     {
         var task = _mapper.Map<Task>(dto);
-        var result = await _taskRepository.Add(task);
+        var result = await _taskRepository.Add<Task>(task);
         return Ok(result);
     }
 
@@ -70,9 +70,11 @@ public class TasksController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        _taskRepository.Delete(id);
+        var task = new Task();
+        task.Id = id;
+        await _taskRepository.Delete(task);
         return Ok();
     }
 }

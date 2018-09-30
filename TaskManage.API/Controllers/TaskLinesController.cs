@@ -35,7 +35,7 @@ public class TaskLinesController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Add(TaskLineAddDto dto)
-    { 
+    {
         var taskLine = _mapper.Map<TaskLine>(dto);
         var result = await _taskLineRepository.Add(taskLine);
         return Ok(result);
@@ -43,22 +43,24 @@ public class TaskLinesController : ControllerBase
 
     [HttpPut]
     public async Task<IActionResult> Edit(TaskLineEditDto dto)
-    { 
+    {
         var taskLine = _mapper.Map<TaskLine>(dto);
         var result = await _taskLineRepository.Edit(taskLine);
         return Ok(result);
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
-    { 
-        _taskLineRepository.Delete(id);
+    public async Task<IActionResult> Delete(int id)
+    {
+        var line = new TaskLine();
+        line.Id = id;
+        await _taskLineRepository.Delete(line);
         return Ok();
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
-    { 
+    {
         var result = await _taskLineRepository.GetAll();
         var taskLines = _mapper.Map<IEnumerable<TaskLineDto>>(result);
         return Ok(taskLines);

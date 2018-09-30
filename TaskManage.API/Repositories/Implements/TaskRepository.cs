@@ -6,20 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TaskManage.API.Data
 {
-    public class TaskRepository : ITaskRepository
+    public class TaskRepository : BaseRepository, ITaskRepository
     {
         private readonly DataContext _context;
-        public TaskRepository(DataContext context)
+        public TaskRepository(DataContext context): base(context)
         {
             _context = context;
-        }
-
-        public async Task<Task> Add(Task task)
-        {
-            task.Created = DateTime.Now;
-            await _context.Tasks.AddAsync(task);
-            await _context.SaveChangesAsync();
-            return task;
         }
 
         public async System.Threading.Tasks.Task UpdateUsers(int taskId, ICollection<int> userIds)
@@ -40,13 +32,6 @@ namespace TaskManage.API.Data
                 });
             }
             await _context.SaveChangesAsync();
-        }
-
-        public void Delete(int id)
-        {
-            var task = _context.Tasks.SingleOrDefault(x => x.Id == id);
-            _context.Remove(task);
-            _context.SaveChangesAsync();
         }
 
         public async Task<Task> Edit(Task task)

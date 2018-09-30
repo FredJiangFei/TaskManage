@@ -55,7 +55,7 @@ export class TaskComponent {
 
   showTaskDetails() {
     this.dialog.open(TaskDetailComponent, {
-      maxWidth: '800px',
+      width: '800px',
       data: Object.assign({}, this.task)
     });
   }
