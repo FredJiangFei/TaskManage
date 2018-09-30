@@ -15,6 +15,8 @@ namespace TaskManage.API.Data
         public DbSet<Task> Tasks { get; set; }
         public DbSet<TaskLine> TaskLines { get; set; }
         public DbSet<TaskUser> TaskUsers { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

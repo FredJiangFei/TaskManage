@@ -9,11 +9,12 @@ public class Task
     public string Description { get; set; }
     public int Order { get; set; }
     public DateTime DueDate { get; set; }
-    public DateTime Created { get; set; }
+    public DateTime Created { get; set; } = DateTime.Now;
     public bool Completed { get; set; }
     public TaskLine Line { get; set; }
     public int LineId { get; set; }
     public ICollection<TaskUser> TaskUsers { get; set; }
+    public ICollection<Comment> Comments { get; set; }
 
     public void Edit(string title, string description, DateTime dueDate){
         Title = title;
@@ -27,9 +28,5 @@ public class Task
 
     public void Move(int lineId){
         LineId = lineId;
-    }
-
-    public void UpdateUsers(ICollection<User> Users){
-       
     }
 }

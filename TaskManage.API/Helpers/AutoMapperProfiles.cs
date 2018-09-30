@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using AutoMapper;
 using TaskManage.API.Dtos;
@@ -15,6 +16,11 @@ namespace TaskManage.API.Helpers
             CreateMap<TaskLineEditDto, TaskLine>();
             CreateMap<TaskAddDto, Task>();
             CreateMap<TaskEditDto, Task>();
+            CreateMap<CommentAddDto, Comment>();
+            CreateMap<PhotoAddDto, Photo>();
+
+            CreateMap<Comment, CommentDto>();
+            CreateMap<Photo, PhotoDto>();
 
             CreateMap<TaskLine, TaskLineDto>();
 

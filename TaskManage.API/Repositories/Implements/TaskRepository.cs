@@ -44,8 +44,8 @@ namespace TaskManage.API.Data
 
         public void Delete(int id)
         {
-            var lineGet = _context.Tasks.SingleOrDefault(x => x.Id == id);
-            _context.Remove(lineGet);
+            var task = _context.Tasks.SingleOrDefault(x => x.Id == id);
+            _context.Remove(task);
             _context.SaveChangesAsync();
         }
 
@@ -55,11 +55,6 @@ namespace TaskManage.API.Data
             taskGet.Edit(task.Title, task.Description, task.DueDate);
             await _context.SaveChangesAsync();
             return taskGet;
-        }
-
-        public async Task<Task[]> GetAll()
-        {
-            throw new NotImplementedException();
         }
 
         public void MoveTask(int id, int lineId)

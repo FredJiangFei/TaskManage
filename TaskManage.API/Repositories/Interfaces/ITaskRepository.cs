@@ -12,6 +12,5 @@ namespace TaskManage.API.Data
         void MoveTask(int id, int lineId);
         void Delete(int id);
         System.Threading.Tasks.Task UpdateUsers(int taskId, ICollection<int> userIds);
-        Task<Task[]> GetAll();
     }
 }
