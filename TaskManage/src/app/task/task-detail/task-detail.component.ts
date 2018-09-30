@@ -1,9 +1,9 @@
-import { map } from 'rxjs/operators';
+import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { User } from './../../_models/user';
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
 import { UsersService } from './../../_services/users.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatAutocompleteSelectedEvent } from '@angular/material';
-import { Component, Inject, ElementRef, ViewChild } from '@angular/core';
+import { Component, Inject, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Task } from '../../_models/task';
 import { TasksService } from '../../_services/tasks.service';
 
@@ -12,7 +12,7 @@ import { TasksService } from '../../_services/tasks.service';
   templateUrl: './task-detail.component.html',
   styleUrls: ['./task-detail.component.css']
 })
-export class TaskDetailComponent {
+export class TaskDetailComponent implements OnInit {
   task: Task;
   users$: Observable<User[]>;
   userIds: number[];
@@ -23,9 +23,19 @@ export class TaskDetailComponent {
     private usersService: UsersService,
     private tasksService: TasksService,
     private ref: MatDialogRef<TaskDetailComponent>) {
-    this.task = data;
-    this.userIds = data.userIds;
+  }
+
+  ngOnInit(): void {
+    this.task = this.data;
+    this.userIds = this.data.userIds;
     this.resetUserList();
+    // this.users$ = fromEvent(this.usersInput.nativeElement, 'keyup')
+    //   .pipe(
+    //     map((e: any) => e.target.value.toLowerCase()),
+    //     switchMap(v => this.users$.pipe(
+    //       map(us => us.filter(u => u.username.toLowerCase().includes(v))
+    //       )))
+    //   );
   }
 
   removeUser(userId: number) {
