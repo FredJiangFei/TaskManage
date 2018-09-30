@@ -25,7 +25,7 @@ export class TaskDetailComponent {
     private ref: MatDialogRef<TaskDetailComponent>) {
     this.task = data;
     this.userIds = data.userIds;
-    this.users$ = usersService.users$;
+    this.resetUserList();
   }
 
   removeUser(userId: number) {
@@ -43,6 +43,11 @@ export class TaskDetailComponent {
   }
 
   saveUsers() {
-    this.tasksService.updateUsers(this.task.id, this.userIds).subscribe();
+    this.tasksService.updateUsers(this.task, this.userIds).subscribe();
+    this.resetUserList();
+  }
+
+  resetUserList() {
+    this.users$ = this.usersService.users$.pipe(map(users => users.filter(user => !this.userIds.includes(user.id))));
   }
 }

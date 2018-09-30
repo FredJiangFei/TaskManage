@@ -5,3 +5,10 @@ mat-card-title{
 .add-comment-container{
     text-align: right;
 }
+
+::ng-deep .avatar-selecter .mat-form-field-underline {
+    display: none;
+}
+::ng-deep .avatar-selecter .mat-form-field-wrapper {
+    padding-bottom: 0;
+}

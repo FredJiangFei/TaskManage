@@ -99,10 +99,16 @@ export class TasksService {
     return this.http.put(`${environment.baseUrl}/tasks/toggle-complete/${id}`, {});
   }
 
-  updateUsers(id: number, userIds: number[]) {
-    return this.http.put(`${environment.baseUrl}/tasks/update-users/${id}`, {
+  updateUsers(task: Task, userIds: number[]) {
+    return this.http.put(`${environment.baseUrl}/tasks/update-users/${task.id}`, {
       userIds: userIds
-    });
+    }).pipe(
+      tap(_ => {
+        const line = this.tasksSubject.value.find(x => x.id === task.lineId);
+        const linTask = line.tasks.find(t => task.id === t.id);
+        linTask.userIds = userIds;
+      })
+    );
   }
 
   moveTask(task: Task, newLineId: number) {
