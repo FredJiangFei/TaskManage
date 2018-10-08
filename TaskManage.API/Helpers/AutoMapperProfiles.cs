@@ -19,7 +19,11 @@ namespace TaskManage.API.Helpers
             CreateMap<CommentAddDto, Comment>();
             CreateMap<PhotoAddDto, Photo>();
 
-            CreateMap<Comment, CommentDto>();
+            CreateMap<Comment, CommentDto>().ForMember(
+                dest => dest.CreatedBy, 
+                opt => opt.MapFrom(src => src.CreatedBy)
+            );
+            
             CreateMap<Photo, PhotoDto>();
 
             CreateMap<TaskLine, TaskLineDto>();

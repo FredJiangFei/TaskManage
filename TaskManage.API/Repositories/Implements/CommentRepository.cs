@@ -14,14 +14,12 @@ namespace TaskManage.API.Data
             _context = context;
         }
 
-        public Task<Comment> Edit(Comment task)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ICollection<Comment>> GetByTaskId(int taskId)
         {
-            return await _context.Comments.Include(c => c.Photos).Where(p => p.TaskId == taskId).ToArrayAsync();
+            return await _context.Comments
+            .Include(c => c.Photos)
+            .Include(c => c.CreatedBy)
+            .Where(p => p.TaskId == taskId).ToArrayAsync();
         }
     }
 }

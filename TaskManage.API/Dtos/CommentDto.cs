@@ -9,7 +9,7 @@ namespace TaskManage.API.Dtos
         public int Id { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }
-        public int CreatedById { get; set; }
+        public UserDetailDto CreatedBy { get; set; }
         public int TaskId { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
     }

@@ -1,3 +1,6 @@
+import { AuthService } from './../../_services/auth.service';
+import { NewCommentCommand } from './../../_commands/newComment.command';
+import { CommentsService } from './../../_services/comments.service';
 import { map, debounceTime, switchMap, tap } from 'rxjs/operators';
 import { User } from './../../_models/user';
 import { Observable, fromEvent } from 'rxjs';
@@ -6,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatAutocompleteSelectedEvent } from '@an
 import { Component, Inject, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Task } from '../../_models/task';
 import { TasksService } from '../../_services/tasks.service';
+import { Comment } from '../../_models/comment';
 
 @Component({
   selector: 'app-task-detail',
@@ -15,6 +19,7 @@ import { TasksService } from '../../_services/tasks.service';
 export class TaskDetailComponent implements OnInit {
   task: Task;
   users$: Observable<User[]>;
+  comments$: Observable<Comment[]>;
   userIds: number[];
   @ViewChild('usersInput') usersInput: ElementRef;
 
@@ -22,6 +27,8 @@ export class TaskDetailComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: Task,
     private usersService: UsersService,
     private tasksService: TasksService,
+    private authService: AuthService,
+    private commentsService: CommentsService,
     private ref: MatDialogRef<TaskDetailComponent>) {
   }
 
@@ -29,6 +36,8 @@ export class TaskDetailComponent implements OnInit {
     this.task = this.data;
     this.userIds = this.data.userIds;
     this.resetUserList();
+    this.comments$ = this.commentsService.comments$;
+    this.commentsService.getCommentsByTaskId(this.task.id).subscribe();
   }
 
   removeUser(userId: number) {
@@ -58,5 +67,14 @@ export class TaskDetailComponent implements OnInit {
         const v = e.target.value.toLowerCase();
         this.users$ = filterByIds$.pipe(map(us => us.filter(u => u.username.toLowerCase().includes(v))));
       });
+  }
+
+  addComment(comment: string) {
+    const command: NewCommentCommand = {
+      description: comment,
+      createdById: this.authService.LoggedUser().id,
+      taskId: this.task.id
+    };
+    this.commentsService.add(command).subscribe();
   }
 }
