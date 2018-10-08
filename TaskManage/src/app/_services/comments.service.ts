@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { Comment } from '../_models/comment';
 
 @Injectable({
@@ -11,7 +11,15 @@ import { Comment } from '../_models/comment';
 })
 export class CommentsService {
   commentsSubject = new BehaviorSubject<Comment[]>([]);
-  comments$ = this.commentsSubject.asObservable();
+  comments$ = this.commentsSubject.asObservable().pipe(map(comments => comments.sort((a: Comment, b: Comment) => {
+    if (a.created < b.created) {
+        return 1;
+    }
+    if (a.created > b.created) {
+      return -1;
+    }
+    return 0;
+  })));
 
   constructor(private http: HttpClient) { }
 

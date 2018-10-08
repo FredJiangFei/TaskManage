@@ -1,6 +1,7 @@
 import { IdToUserPipe } from './_pipes/id-to-user.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TimeAgoPipe} from 'time-ago-pipe';
 
 import {
     MatIconModule,
@@ -42,7 +43,8 @@ import { DropDirective } from './_directives/drop.directive';
         SpinnerDirective,
         DragDirective,
         DropDirective,
-        IdToUserPipe
+        IdToUserPipe,
+        TimeAgoPipe
     ],
     exports: [
         CommonModule,
@@ -79,7 +81,8 @@ import { DropDirective } from './_directives/drop.directive';
         SpinnerDirective,
         DragDirective,
         DropDirective,
-        IdToUserPipe
+        IdToUserPipe,
+        TimeAgoPipe
     ]
 })
 export class ShareModule { }

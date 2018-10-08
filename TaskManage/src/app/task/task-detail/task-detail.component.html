@@ -32,7 +32,7 @@
     <div class="col-sm-12" style="display: flex;margin-top: 10px;">
         <mat-icon [svgIcon]="comment.createdBy.avatar"></mat-icon> {{comment.createdBy.username}} 
         <span class="fill-remaining-space"></span>
-        <span>{{comment.created}}</span>
+        <span>{{comment.created | timeAgo}}</span>
     </div>
     <div class="col-sm-12">
       {{comment.description}}
