@@ -13,7 +13,7 @@ export class CommentsService {
   commentsSubject = new BehaviorSubject<Comment[]>([]);
   comments$ = this.commentsSubject.asObservable().pipe(map(comments => comments.sort((a: Comment, b: Comment) => {
     if (a.created < b.created) {
-        return 1;
+      return 1;
     }
     if (a.created > b.created) {
       return -1;
@@ -29,6 +29,17 @@ export class CommentsService {
         tap(c => {
           const currentValue = this.commentsSubject.value;
           const updatedValue = [...currentValue, c];
+          this.commentsSubject.next(updatedValue);
+        })
+      );
+  }
+
+  delete(id: number) {
+    return this.http.delete<Comment>(`${environment.baseUrl}/comments/${id}`)
+      .pipe(
+        tap(_ => {
+          const currentValue = this.commentsSubject.value;
+          const updatedValue = currentValue.filter(c => c.id !== id);
           this.commentsSubject.next(updatedValue);
         })
       );

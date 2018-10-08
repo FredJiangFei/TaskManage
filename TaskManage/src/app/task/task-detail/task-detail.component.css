@@ -12,3 +12,9 @@ mat-card-title{
 ::ng-deep .user-selecter .mat-form-field-wrapper {
     padding-bottom: 0;
 }
+
+.comment-header{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}

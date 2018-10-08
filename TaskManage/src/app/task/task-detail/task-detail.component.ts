@@ -77,4 +77,12 @@ export class TaskDetailComponent implements OnInit {
     };
     this.commentsService.add(command).subscribe();
   }
+
+  deleteComment(comment: Comment) {
+    this.commentsService.delete(comment.id).subscribe();
+  }
+
+  isMyComment(comment: Comment) {
+    return comment.createdBy.id === this.authService.LoggedUser().id;
+  }
 }

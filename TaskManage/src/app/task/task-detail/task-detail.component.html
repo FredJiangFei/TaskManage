@@ -29,9 +29,10 @@
   <div> {{task.description}} </div>
 
   <div class="row" *ngFor="let comment of comments$ | async" >
-    <div class="col-sm-12" style="display: flex;margin-top: 10px;">
+    <div class="col-sm-12 comment-header">
         <mat-icon [svgIcon]="comment.createdBy.avatar"></mat-icon> {{comment.createdBy.username}} 
         <span class="fill-remaining-space"></span>
+        <mat-icon (click)="deleteComment(comment)" *ngIf="isMyComment(comment)" class="hand">delete</mat-icon>
         <span>{{comment.created | timeAgo}}</span>
     </div>
     <div class="col-sm-12">
