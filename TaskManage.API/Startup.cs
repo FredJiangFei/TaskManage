@@ -39,6 +39,7 @@ namespace TaskManage.API
             services.AddScoped<ITaskLineRepository, TaskLineRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
+         
             services.AddAutoMapper();
 
              services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
