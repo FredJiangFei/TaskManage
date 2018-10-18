@@ -26,6 +26,28 @@ using System.IO;
 
 namespace TaskManage.API
 {
+    public class StartupDevelopment
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+        }
+    }
+
+    public class StartupProduction
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+        }
+    }
+
     public class Startup
     {
         public Startup(IConfiguration configuration)

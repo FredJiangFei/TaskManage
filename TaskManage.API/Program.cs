@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace TaskManage.API
 {
@@ -18,12 +19,16 @@ namespace TaskManage.API
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-             .ConfigureServices(services =>
-            {
-                services.AddTransient<IStartupFilter, RequestSetOptionsStartupFilter>();
-            })
-            .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
+            
+            return WebHost.CreateDefaultBuilder(args)
+              .ConfigureServices(services =>
+             {
+                 services.AddTransient<IStartupFilter, RequestSetOptionsStartupFilter>();
+             })
+             .UseStartup<Startup>();
+        }
     }
 }
