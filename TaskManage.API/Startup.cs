@@ -20,6 +20,7 @@ using TaskManage.API.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Globalization;
 
 namespace TaskManage.API
 {
@@ -33,27 +34,28 @@ namespace TaskManage.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<FactoryActivatedMiddleware>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITaskLineRepository, TaskLineRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
-         
+
             services.AddAutoMapper();
 
-             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-               .AddJwtBearer(options =>
-               {
-                   var token = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
-                   options.TokenValidationParameters = new TokenValidationParameters
-                   {
-                       ValidateIssuerSigningKey = true,
-                       IssuerSigningKey = new SymmetricSecurityKey(token),
-                       ValidateIssuer = false,
-                       ValidateAudience = false
-                   };
-               });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+              .AddJwtBearer(options =>
+              {
+                  var token = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuerSigningKey = true,
+                      IssuerSigningKey = new SymmetricSecurityKey(token),
+                      ValidateIssuer = false,
+                      ValidateAudience = false
+                  };
+              });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -81,13 +83,22 @@ namespace TaskManage.API
                 });
             });
 
-             app.UseAuthentication();
-             app.UseCors(x => x.WithOrigins("http://localhost:4200")
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .AllowCredentials());
+            app.UseAuthentication();
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .AllowCredentials());
+            // app.UseConventionalMiddleware();
+            // app.UseFactoryActivatedMiddleware();
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseRequestCulture();
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync($"Hello {CultureInfo.CurrentCulture.DisplayName}");
+            });
         }
     }
 }
