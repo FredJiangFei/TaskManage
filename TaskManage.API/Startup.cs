@@ -21,6 +21,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Globalization;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace TaskManage.API
 {
@@ -81,6 +83,17 @@ namespace TaskManage.API
                         await context.Response.WriteAsync(error.Error.Message);
                     }
                 });
+            });
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                       Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+                RequestPath = "/StaticFiles",
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=1000");
+                }
             });
 
             app.UseAuthentication();
