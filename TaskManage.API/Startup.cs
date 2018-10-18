@@ -26,28 +26,7 @@ using System.IO;
 
 namespace TaskManage.API
 {
-    public class StartupDevelopment
-    {
-        public void ConfigureServices(IServiceCollection services)
-        {
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-        }
-    }
-
-    public class StartupProduction
-    {
-        public void ConfigureServices(IServiceCollection services)
-        {
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-        }
-    }
-
+   
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -132,7 +111,8 @@ namespace TaskManage.API
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync($"Hello {CultureInfo.CurrentCulture.DisplayName}");
+                var userName = Configuration["Greeting"];
+                await context.Response.WriteAsync($"Hello {userName}");
             });
         }
     }

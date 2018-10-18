@@ -21,13 +21,7 @@ namespace TaskManage.API
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
-            
             return WebHost.CreateDefaultBuilder(args)
-              .ConfigureServices(services =>
-             {
-                 services.AddTransient<IStartupFilter, RequestSetOptionsStartupFilter>();
-             })
              .UseStartup<Startup>();
         }
     }
