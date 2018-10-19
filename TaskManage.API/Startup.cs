@@ -26,7 +26,7 @@ using System.IO;
 
 namespace TaskManage.API
 {
-   
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -61,58 +61,81 @@ namespace TaskManage.API
               });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app,
+        IHostingEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
+            // else
+            // {
+            //     app.UseHsts();
+            // }
 
-            app.UseExceptionHandler(builder =>
+            // app.UseExceptionHandler(builder =>
+            // {
+            //     builder.Run(async context =>
+            //     {
+            //         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            //         var error = context.Features.Get<IExceptionHandlerFeature>();
+            //         if (error != null)
+            //         {
+            //             context.Response.AddApplicationError(error.Error.Message);
+            //             await context.Response.WriteAsync(error.Error.Message);
+            //         }
+            //     });
+            // });
+            // app.UseStaticFiles();
+            // app.UseStaticFiles(new StaticFileOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(
+            //            Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+            //     RequestPath = "/StaticFiles",
+            //     OnPrepareResponse = ctx =>
+            //     {
+            //         ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=1000");
+            //     }
+            // });
+
+            // app.UseAuthentication();
+            // app.UseCors(x => x.WithOrigins("http://localhost:4200")
+            //                .AllowAnyMethod()
+            //                .AllowAnyHeader()
+            //                .AllowCredentials());
+            // app.UseHttpsRedirection();
+            // app.UseMvc();
+
+            // app.UseRequestCulture();
+
+            // app.Use(next =>
+            // {
+            //     return async context =>
+            //     {
+            //         throw new Exception("error");
+            //         logger.LogInformation("Request incoming.");
+            //         if (context.Request.Path.StartsWithSegments("/mym"))
+            //         {
+            //             await context.Response.WriteAsync("Hit!!");
+            //             logger.LogInformation("Request handle.");
+            //         }
+            //         else
+            //         {
+            //             await next(context);
+            //             logger.LogInformation("Request response.");
+            //         }
+            //     };
+            // });
+
+            app.UseWelcomePage(new WelcomePageOptions
             {
-                builder.Run(async context =>
-                {
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    var error = context.Features.Get<IExceptionHandlerFeature>();
-                    if (error != null)
-                    {
-                        context.Response.AddApplicationError(error.Error.Message);
-                        await context.Response.WriteAsync(error.Error.Message);
-                    }
-                });
+                Path = "/"
             });
-            app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                       Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
-                RequestPath = "/StaticFiles",
-                OnPrepareResponse = ctx =>
-                {
-                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age=1000");
-                }
-            });
 
-            app.UseAuthentication();
-            app.UseCors(x => x.WithOrigins("http://localhost:4200")
-                           .AllowAnyMethod()
-                           .AllowAnyHeader()
-                           .AllowCredentials());
-            // app.UseConventionalMiddleware();
-            // app.UseFactoryActivatedMiddleware();
-            app.UseHttpsRedirection();
-            app.UseMvc();
-
-            app.UseRequestCulture();
-
-            app.Run(async (context) =>
+            app.Run(async context =>
             {
                 var userName = Configuration["Greeting"];
-                await context.Response.WriteAsync($"Hello {userName}");
+                await context.Response.WriteAsync($"Hello {userName}::{env.EnvironmentName}");
             });
         }
     }
