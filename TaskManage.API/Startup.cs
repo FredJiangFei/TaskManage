@@ -86,7 +86,8 @@ namespace TaskManage.API
             //         }
             //     });
             // });
-            // app.UseStaticFiles();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             // app.UseStaticFiles(new StaticFileOptions
             // {
             //     FileProvider = new PhysicalFileProvider(
@@ -108,24 +109,20 @@ namespace TaskManage.API
 
             // app.UseRequestCulture();
 
-            // app.Use(next =>
-            // {
-            //     return async context =>
-            //     {
-            //         throw new Exception("error");
-            //         logger.LogInformation("Request incoming.");
-            //         if (context.Request.Path.StartsWithSegments("/mym"))
-            //         {
-            //             await context.Response.WriteAsync("Hit!!");
-            //             logger.LogInformation("Request handle.");
-            //         }
-            //         else
-            //         {
-            //             await next(context);
-            //             logger.LogInformation("Request response.");
-            //         }
-            //     };
-            // });
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("Request incoming.");
+                if (context.Request.Path.StartsWithSegments("/mym"))
+                {
+                    await context.Response.WriteAsync("Hit!!");
+                    logger.LogInformation("Request handle.");
+                }
+                else
+                {
+                    logger.LogInformation("Request response.");
+                    await next.Invoke();
+                }
+            });
 
             app.UseWelcomePage(new WelcomePageOptions
             {
@@ -134,6 +131,7 @@ namespace TaskManage.API
 
             app.Run(async context =>
             {
+                logger.LogInformation("Request response Greeting.");
                 var userName = Configuration["Greeting"];
                 await context.Response.WriteAsync($"Hello {userName}::{env.EnvironmentName}");
             });
