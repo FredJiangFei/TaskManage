@@ -47,8 +47,7 @@ namespace TaskManage.API
 
             services.AddAutoMapper();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-              .AddJwtBearer(options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
               {
                   var token = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
                   options.TokenValidationParameters = new TokenValidationParameters
@@ -70,7 +69,7 @@ namespace TaskManage.API
             }
             // else
             // {
-            //     app.UseHsts();
+            //     app.UseHsts();  
             // }
 
             // app.UseExceptionHandler(builder =>
@@ -99,13 +98,13 @@ namespace TaskManage.API
             //     }
             // });
 
-            // app.UseAuthentication();
+            app.UseAuthentication();
             // app.UseCors(x => x.WithOrigins("http://localhost:4200")
             //                .AllowAnyMethod()
             //                .AllowAnyHeader()
             //                .AllowCredentials());
             // app.UseHttpsRedirection();
-            // app.UseMvc();
+            app.UseMvc();
 
             // app.UseRequestCulture();
 
