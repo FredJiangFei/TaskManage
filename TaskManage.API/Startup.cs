@@ -67,24 +67,24 @@ namespace TaskManage.API
             {
                 app.UseDeveloperExceptionPage();
             }
-            // else
-            // {
-            //     app.UseHsts();  
-            // }
+            else
+            {
+                app.UseHsts();  
+            }
 
-            // app.UseExceptionHandler(builder =>
-            // {
-            //     builder.Run(async context =>
-            //     {
-            //         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            //         var error = context.Features.Get<IExceptionHandlerFeature>();
-            //         if (error != null)
-            //         {
-            //             context.Response.AddApplicationError(error.Error.Message);
-            //             await context.Response.WriteAsync(error.Error.Message);
-            //         }
-            //     });
-            // });
+            app.UseExceptionHandler(builder =>
+            {
+                builder.Run(async context =>
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    var error = context.Features.Get<IExceptionHandlerFeature>();
+                    if (error != null)
+                    {
+                        context.Response.AddApplicationError(error.Error.Message);
+                        await context.Response.WriteAsync(error.Error.Message);
+                    }
+                });
+            });
             app.UseDefaultFiles();
             app.UseStaticFiles();
             // app.UseStaticFiles(new StaticFileOptions
@@ -99,11 +99,11 @@ namespace TaskManage.API
             // });
 
             app.UseAuthentication();
-            // app.UseCors(x => x.WithOrigins("http://localhost:4200")
-            //                .AllowAnyMethod()
-            //                .AllowAnyHeader()
-            //                .AllowCredentials());
-            // app.UseHttpsRedirection();
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .AllowCredentials());
+            app.UseHttpsRedirection();
             app.UseMvc();
 
             // app.UseRequestCulture();
