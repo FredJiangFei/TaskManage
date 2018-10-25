@@ -1,9 +1,9 @@
 import { LoginPage } from './../login/login';
-import { AuthService } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { TaskPage } from '../task/task';
+import { AuthService } from '../../providers/auth-service';
 
 @Component({
   selector: 'page-tabs',

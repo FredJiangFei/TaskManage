@@ -10,8 +10,13 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TaskPage } from '../pages/task/task';
-import { AuthService } from '../providers/auth-service/auth-service';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from '../providers/auth-service';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -25,7 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: tokenGetter,
+    //     whitelistedDomains: ['localhost:5000']
+    //   }
+    // })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

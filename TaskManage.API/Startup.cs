@@ -99,7 +99,7 @@ namespace TaskManage.API
             // });
 
             app.UseAuthentication();
-            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+            app.UseCors(x => x.WithOrigins("http://localhost:4200","http://localhost:8100")
                            .AllowAnyMethod()
                            .AllowAnyHeader()
                            .AllowCredentials());
