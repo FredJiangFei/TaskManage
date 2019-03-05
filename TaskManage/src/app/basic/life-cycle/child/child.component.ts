@@ -20,7 +20,7 @@ export class ChildComponent implements OnInit, OnChanges, DoCheck {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(JSON.stringify(changes, null, 2));
+    // console.log(JSON.stringify(changes, null, 2));
   }
 
   ngDoCheck(): void {
@@ -37,6 +37,6 @@ export class ChildComponent implements OnInit, OnChanges, DoCheck {
     //   console.log(`Docheck: name not change, but DoCheck was called ${this.noChangeCount} times.`);
     // }
 
-    this.changeDetected = false;
+    // this.changeDetected = false;
   }
 }

@@ -7,9 +7,11 @@ import { Component,
    AfterContentChecked,
    AfterViewInit,
    AfterViewChecked,
-   SimpleChanges } from '@angular/core';
+   SimpleChanges,
+   ViewChild} from '@angular/core';
+import { ChildViewComponent } from './child-view/child-view.component';
 
-let logIndex = 1;
+// let logIndex = 1;
 
 @Component({
   selector: 'app-life-cycle',
@@ -23,6 +25,8 @@ export class LifeCycleComponent
   @Input()title: string;
   greeting = 'Hello';
   user: { name: string } = { name: 'Tom' };
+  @ViewChild('viewA')child1: ChildViewComponent;
+  message = 'Hello';
 
   constructor() {
     this.logIt(`title in constructor: ${this.title}`);
@@ -33,6 +37,9 @@ export class LifeCycleComponent
   }
 
   ngOnInit() {
+    setInterval(() => {
+      this.child1.greeting('Tom');
+    }, 3000);
     this.logIt(`title in ngOnInit: ${this.title}`);
   }
 
@@ -53,12 +60,14 @@ export class LifeCycleComponent
     this.logIt(`title in ngAfterContentChecked: ${this.title}`);
   }
 
-  ngAfterViewInit(): void {
-    this.logIt(`title in ngAfterViewInit: ${this.title}`);
-  }
-
   ngAfterViewChecked(): void {
-    this.logIt(`title in ngAfterViewChecked: ${this.title}`);
+    console.log('parent ngAfterViewChecked');
   }
 
+  ngAfterViewInit(): void {
+    console.log('parent ngAfterViewInit');
+    setTimeout(() => {
+      this.message = 'error';
+    }, 0);
+  }
 }

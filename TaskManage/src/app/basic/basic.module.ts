@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { BasicComponent } from './basic.component';
 import { ChildComponent } from './life-cycle/child/child.component';
+import { ChildViewComponent } from './life-cycle/child-view/child-view.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'lifeCycle' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   declarations: [
     LifeCycleComponent,
     BasicComponent,
-    ChildComponent
+    ChildComponent,
+    ChildViewComponent
   ]
 })
 export class BasicModule { }

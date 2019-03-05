@@ -10,3 +10,12 @@
 
 <h3>Child</h3>
 <app-child [greeting]="greeting" [user]="user"></app-child>
+
+<h3>View</h3>
+<app-child-view #viewA></app-child-view>
+
+<app-child-view #viewB></app-child-view>
+<button (click)="viewB.greeting('Jerry')">greeting</button>
+
+<h3>ngAfterViewInit Error</h3>
+{{message}}
