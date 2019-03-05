@@ -5,6 +5,7 @@ import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { BasicComponent } from './basic.component';
 import { ChildComponent } from './life-cycle/child/child.component';
 import { ChildViewComponent } from './life-cycle/child-view/child-view.component';
+import { ChildContentComponent } from './life-cycle/child-content/child-content.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'lifeCycle' },
@@ -26,7 +27,8 @@ const routes: Routes = [
     LifeCycleComponent,
     BasicComponent,
     ChildComponent,
-    ChildViewComponent
+    ChildViewComponent,
+    ChildContentComponent
   ]
 })
 export class BasicModule { }

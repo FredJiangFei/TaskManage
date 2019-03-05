@@ -37,9 +37,9 @@ export class LifeCycleComponent
   }
 
   ngOnInit() {
-    setInterval(() => {
+    // setInterval(() => {
       this.child1.greeting('Tom');
-    }, 3000);
+    // }, 3000);
     this.logIt(`title in ngOnInit: ${this.title}`);
   }
 
@@ -53,11 +53,11 @@ export class LifeCycleComponent
   }
 
   ngAfterContentInit(): void {
-    this.logIt(`title in ngAfterContentInit: ${this.title}`);
+    console.log('parent ContentInit finish');
   }
 
   ngAfterContentChecked(): void {
-    this.logIt(`title in ngAfterContentChecked: ${this.title}`);
+    console.log('parent ContentChecked finish');
   }
 
   ngAfterViewChecked(): void {

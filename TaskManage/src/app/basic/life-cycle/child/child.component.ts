@@ -1,9 +1,10 @@
-import { Component, OnInit, OnChanges, DoCheck, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
-  styleUrls: ['./child.component.css']
+  styleUrls: ['./child.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChildComponent implements OnInit, OnChanges, DoCheck {
   @Input() greeting: string;
@@ -20,23 +21,23 @@ export class ChildComponent implements OnInit, OnChanges, DoCheck {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log(JSON.stringify(changes, null, 2));
+    console.log(JSON.stringify(changes, null, 2));
   }
 
   ngDoCheck(): void {
-    // if (this.user.name !== this.oldName) {
-    //   this.changeDetected = true;
-    //   console.log(`DoCheck user name change to ${this.user.name} from ${this.oldName}`);
-    //   this.oldName = this.user.name;
-    // }
+    if (this.user.name !== this.oldName) {
+      this.changeDetected = true;
+      console.log(`DoCheck user name change to ${this.user.name} from ${this.oldName}`);
+      this.oldName = this.user.name;
+    }
 
-    // if (this.changeDetected) {
-    //   this.noChangeCount = 0;
-    // } else {
-    //   this.noChangeCount++;
-    //   console.log(`Docheck: name not change, but DoCheck was called ${this.noChangeCount} times.`);
-    // }
+    if (this.changeDetected) {
+      this.noChangeCount = 0;
+    } else {
+      this.noChangeCount++;
+      console.log(`Docheck: name not change, but DoCheck was called ${this.noChangeCount} times.`);
+    }
 
-    // this.changeDetected = false;
+    this.changeDetected = false;
   }
 }

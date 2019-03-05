@@ -16,10 +16,10 @@ export class ChildViewComponent implements OnInit, AfterViewInit, AfterViewCheck
   }
 
   ngAfterViewChecked(): void {
-    console.log('child ngAfterViewChecked');
+    // console.log('child ngAfterViewChecked');
   }
 
   ngAfterViewInit(): void {
-    console.log('child ngAfterViewInit');
+    // console.log('child ngAfterViewInit');
   }
 }
