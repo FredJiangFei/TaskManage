@@ -6,16 +6,16 @@ import { BasicComponent } from './basic.component';
 import { ChildComponent } from './life-cycle/child/child.component';
 import { ChildViewComponent } from './life-cycle/child-view/child-view.component';
 import { ChildContentComponent } from './life-cycle/child-content/child-content.component';
+import { ComponentStyleComponent } from './component-style/component-style.component';
+import { HeroControlsComponent } from './component-style/hero-controls.component';
+import { HeroDetailsComponent } from './component-style/hero-details/hero-details.component';
+import { HeroTeamComponent } from './component-style/hero-team.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'lifeCycle' },
   {
     path: '',
-    component: BasicComponent,
-    // children: [
-    //   { path: 'lifeCycle', component: LifeCycleComponent }
-    // ]
-  },
+    component: BasicComponent
+  }
 ];
 
 @NgModule({
@@ -28,7 +28,11 @@ const routes: Routes = [
     BasicComponent,
     ChildComponent,
     ChildViewComponent,
-    ChildContentComponent
+    ChildContentComponent,
+    ComponentStyleComponent,
+    HeroControlsComponent,
+    HeroDetailsComponent,
+    HeroTeamComponent
   ]
 })
 export class BasicModule { }
