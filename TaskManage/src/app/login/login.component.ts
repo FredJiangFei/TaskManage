@@ -11,8 +11,8 @@ import { finalize } from 'rxjs/operators';
 })
 export class LoginComponent {
   user: LoginCommand = {
-    username: '',
-    password: '',
+    username: 'Duan',
+    password: 'j123123',
   };
   logining: boolean;
   constructor(

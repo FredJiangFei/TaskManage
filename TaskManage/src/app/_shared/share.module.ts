@@ -1,4 +1,4 @@
-import { IdToUserPipe } from './_pipes/id-to-user.pipe';
+import { IdToUserPipe } from '../_pipes/id-to-user.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimeAgoPipe} from 'time-ago-pipe';
@@ -32,10 +32,10 @@ import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
 import { HttpClientModule } from '@angular/common/http';
 import { LaddaModule } from 'angular2-ladda';
-import { PasswordDirective } from './_directives/password.directive';
-import { SpinnerDirective } from './_directives/spinner.directive';
-import { DragDirective } from './_directives/drag.directive';
-import { DropDirective } from './_directives/drop.directive';
+import { PasswordDirective } from '../_directives/password.directive';
+import { SpinnerDirective } from '../_directives/spinner.directive';
+import { DragDirective } from '../_directives/drag.directive';
+import { DropDirective } from '../_directives/drop.directive';
 
 @NgModule({
     declarations: [

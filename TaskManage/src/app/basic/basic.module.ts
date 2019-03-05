@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { ShareModule } from '../_shared/share.module';
+import { Routes, RouterModule } from '@angular/router';
+import { LifeCycleComponent } from './life-cycle/life-cycle.component';
+import { BasicComponent } from './basic.component';
+
+const routes: Routes = [
+  // { path: '', redirectTo: 'lifeCycle' },
+  {
+    path: '',
+    component: BasicComponent,
+    // children: [
+    //   { path: 'lifeCycle', component: LifeCycleComponent }
+    // ]
+  },
+];
+
+@NgModule({
+  imports: [
+    ShareModule,
+    RouterModule.forChild(routes)
+  ],
+  declarations: [
+    LifeCycleComponent,
+    BasicComponent
+  ]
+})
+export class BasicModule { }

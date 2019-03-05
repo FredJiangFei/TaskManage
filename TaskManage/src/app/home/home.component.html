@@ -1,8 +1,12 @@
 <mat-toolbar color="primary">
   <span [routerLink]="['/']">Welcome {{user?.username}}</span>
+
   <span class="fill-remaining-space"></span>
-  <button  mat-button [routerLink]="['/tasks']">Tasks</button>
+
+  <button mat-button [routerLink]="['/basic']">Basic</button>
+  <button mat-button [routerLink]="['/tasks']">Tasks</button>
   <mat-icon [svgIcon]="user?.avatar" class="avatar"></mat-icon>
   <button mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
 <router-outlet></router-outlet>
+
