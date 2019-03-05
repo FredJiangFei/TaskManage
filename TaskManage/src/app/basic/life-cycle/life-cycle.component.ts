@@ -21,13 +21,15 @@ export class LifeCycleComponent
   implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked {
   @Input()title: string;
+  greeting = 'Hello';
+  user: { name: string } = { name: 'Tom' };
 
   constructor() {
     this.logIt(`title in constructor: ${this.title}`);
   }
 
   logIt(message: string) {
-    console.log(`#${logIndex++} ${message}`);
+    // console.log(`#${logIndex++} ${message}`);
   }
 
   ngOnInit() {

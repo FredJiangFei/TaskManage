@@ -1,0 +1,12 @@
+<h3>Parent</h3>
+
+<mat-form-field>
+    <input matInput placeholder="Greeting" [(ngModel)]="greeting">
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput placeholder="User name" [(ngModel)]="user.name">
+</mat-form-field>
+
+<h3>Child</h3>
+<app-child [greeting]="greeting" [user]="user"></app-child>

@@ -23,3 +23,11 @@ html, body {
 .hand{
     cursor: pointer;
 }
+
+.mat-tab-body-wrapper {
+    padding: 0 24px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
