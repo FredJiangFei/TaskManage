@@ -4,7 +4,6 @@
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 @import "~spin.js/spin.css";
 @import "~ladda/dist/ladda-themeless.min.css";
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body {
     height: 100%;
