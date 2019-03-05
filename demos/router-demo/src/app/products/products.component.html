@@ -1,0 +1,13 @@
+
+<h3>queryParams:{{queryId}}</h3>
+
+<div class="container">
+    <div class="row" *ngFor="let p of products">
+        <div class="col-sm-4">{{p.id}}</div>
+        <div class="col-sm-6">{{p.name}}</div>
+        <div class="col-sm-2">
+             <a [routerLink]="['/products', p.id]">Detail</a>   
+        </div>
+      </div>
+</div>
+

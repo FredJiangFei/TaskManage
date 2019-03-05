@@ -1,0 +1,32 @@
+
+<!-- <div class="row">
+  <label>snapshotId: </label>
+  <span>{{snapshotId}}</span>
+</div> -->
+
+<div class="row">
+    <label>productId: </label>
+    <span>{{productId}}</span>
+</div>
+
+<div class="row">
+    <label>productName: </label>
+    <span>{{productName}}</span>
+</div>
+
+<div class="row">
+    <a href="#" (click)="goPre()">Pre</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#" (click)="goNext()">Next</a>
+</div>
+
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active">
+        <a [routerLink]="['./']">Description</a>
+    </li>
+    <li role="presentation">
+        <a [routerLink]="['./','ProductNameNotImportant']">Product Name</a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>

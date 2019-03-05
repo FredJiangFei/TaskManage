@@ -1,0 +1,22 @@
+c#
+
+c# extension
+
+nuget package manager
+
+Angular Files
+
+Angular Language Service
+ 
+Auto Rename Tag
+
+Auto Close Tag
+
+Bracket Pair Colorizer
+
+Material Icon Theme
+
+Path Intellisense
+
+Prettier - Code formatter
+

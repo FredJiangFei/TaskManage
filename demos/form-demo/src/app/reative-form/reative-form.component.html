@@ -1,0 +1,17 @@
+<form [formGroup]="formModel" (submit)="save()">
+    <div formGroupName = "dateRange">
+        From: <input type="date" formControlName="from">
+        To: <input type="date"  formControlName="to">
+    </div>
+    <div>
+        <ul formArrayName="emails">
+            <li *ngFor="let e of this.formModel.get('emails').controls; let i = index;">
+                <input type="text" [formControlName]="i">
+            </li>
+        </ul>
+        <button type="button" (click)="addEmail()">Add</button>
+    </div>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>

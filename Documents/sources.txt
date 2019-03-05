@@ -1,0 +1,26 @@
+
+VS Code
+Debugger for Chrome
+REST Client
+
+Angury
+https://chrome-extension-downloader.com/
+
+google svg icons: https://material.io/tools/icons/?style=baseline
+
+http://iconfont.cn/
+https://www.flaticon.com/packs
+
+huan dong han shu:  http://cubic-bezier.com/#.17,.67,.83,.67
+
+pipe: https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md
+
+ngrx
+
+https://www.json-generator.com/
+
+angular ionic
+https://ionicframework.com/
+
+rxjs
+https://www.learnrxjs.io/operators/transformation/switchmap.html

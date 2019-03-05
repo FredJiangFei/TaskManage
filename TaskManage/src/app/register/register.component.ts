@@ -1,5 +1,5 @@
 import { AlertifyService } from '../_services/alertify.service';
-import { PasswordValidators } from '../_validators/password.validator';
+import { PasswordValidators, nameAsyncValidator } from '../_validators/password.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
@@ -37,13 +37,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.fb.group(
       {
-        username: ['', Validators.required],
-        passwordGroup: this.fb.group({
-          password: ['', [Validators.required, Validators.minLength(6), PasswordValidators.format]],
-          confirmpassword: ['']
-        }, {
+        username: ['', [Validators.required], nameAsyncValidator],
+        passwordGroup: this.fb.group(
+          {
+            password: ['', [Validators.required, Validators.minLength(6), PasswordValidators.format]],
+            confirmpassword: ['']
+          },
+          {
             validator: PasswordValidators.shouldEqualToPassowrd
-          }),
+          }
+        ),
         birthday: [''],
         avatar: [avatars[0]]
       });
@@ -62,6 +65,10 @@ export class RegisterComponent implements OnInit {
         this.alertify.success('Register success');
         this.router.navigate(['/login']);
       });
+  }
+
+  get username() {
+    return this.registerForm.get('username');
   }
 
   get password() {

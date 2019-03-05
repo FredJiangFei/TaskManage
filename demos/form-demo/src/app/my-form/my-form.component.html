@@ -1,0 +1,25 @@
+<form #myForm="ngForm" (ngSubmit)="register(myForm.value, myForm.valid)" novalidate>
+  <div>
+    Username: <input type="text" required ngModel #username="ngModel" name="username">
+    <div *ngIf="username.invalid" class="alert alert-danger">
+        <span *ngIf="username.errors?.required">User name is required！</span>
+    </div>
+  </div>
+  <div>
+    Mobile: <input type="text" mobile #mobile="ngModel" ngModel name="mobile">
+    <div *ngIf="mobile.invalid" class="alert alert-danger">
+        <span *ngIf="mobile.errors?.mobile">Mobile is invalid</span>
+    </div>
+  </div>
+
+  <div ngModelGroup="passwordGroup" passwordEqual #passwordGroup="ngModelGroup">
+    <div>Password: <input type="password" ngModel name="password"></div>
+    <div>Confirm password: <input type="password" ngModel name="confirm"></div>
+    
+    <div *ngIf="passwordGroup.errors?.equal" class="alert alert-danger">
+        {{passwordGroup.errors.equal}}
+      </div>
+  </div>
+
+  <button type="submit">Register</button>
+</form>

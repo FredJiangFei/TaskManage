@@ -1,0 +1,26 @@
+
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active">
+            <a [routerLink]="['/']">Home</a>
+        </li>
+        <li role="presentation">
+            <a [routerLink]="['/products']">Products</a>
+        </li>
+        <li role="presentation">
+            <a [routerLink]="['/products']" [queryParams]="{id:123}">Products Router Query Params</a>
+        </li>
+        <li role="presentation">
+            <a href="#" (click)="goToProducts()">Router Products</a>
+        </li>
+        <li role="presentation">
+            <a [routerLink]="[{outlets:{aux:'chat'}}]">Chat</a>
+        </li>
+        <li role="presentation">
+            <a [routerLink]="[{outlets:{aux:null}}]">Stop Chat</a>
+        </li>
+      </ul>
+      <router-outlet></router-outlet>
+      <router-outlet name="aux"></router-outlet>
+</div>

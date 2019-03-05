@@ -1,0 +1,39 @@
+<form [formGroup]="formModel" (ngSubmit)="register()">
+  <div>
+    Username:
+    <input type="text" formControlName="username">
+    <span *ngIf="username.pending">Checking.....</span>
+    <div class="alert alert-danger" [hidden]="username.valid || username.pristine">
+      <div [hidden]="!formModel.hasError('required','username')">
+        Username is required
+      </div>
+      <div [hidden]="!username.errors?.nameExist">
+        Username is exist
+      </div>
+    </div>
+  </div>
+  <div>
+    Mobile:
+    <input type="text" formControlName="mobile">
+    <div [hidden]="!formModel.hasError('mobile','mobile')">
+      Mobile is invalid
+    </div>
+  </div>
+
+  <div formGroupName="passwordGroup">
+    <div>Password:
+      <input type="password" formControlName="password">
+    </div>
+    <div [hidden]="!formModel.hasError('minlength',['passwordGroup','password'])">
+      Password can not less than 6
+    </div>
+    <div>Confirm password:
+      <input type="password" formControlName="confirm">
+    </div>
+    <div [hidden]="!formModel.hasError('equal','passwordGroup')">
+      {{formModel.getError('equal','passwordGroup')}}
+    </div>
+  </div>
+  {{formModel.status}}
+  <button type="submit">Register</button>
+</form>

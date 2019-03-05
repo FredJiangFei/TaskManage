@@ -6,10 +6,13 @@
     </mat-card-header>
     <mat-card-content>
       <mat-form-field class="full-width">
-        <mat-label>User name</mat-label>
+        <mat-label>User name  <span *ngIf="username.pending">Checking.....</span></mat-label>
         <input matInput type="text" formControlName="username">
-      </mat-form-field>
 
+        <mat-error [hidden]="!username.errors?.nameExist">
+          Username is exist
+        </mat-error>
+      </mat-form-field>
       <ng-container formGroupName="passwordGroup">
         <mat-form-field class="full-width">
           <mat-label>Password</mat-label>
