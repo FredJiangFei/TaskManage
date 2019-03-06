@@ -10,6 +10,8 @@ import { ComponentStyleComponent } from './component-style/component-style.compo
 import { HeroControlsComponent } from './component-style/hero-controls.component';
 import { HeroDetailsComponent } from './component-style/hero-details/hero-details.component';
 import { HeroTeamComponent } from './component-style/hero-team.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { DragComponent } from './rxjs/drag/drag.component';
 
 const routes: Routes = [
   {
@@ -32,7 +34,9 @@ const routes: Routes = [
     ComponentStyleComponent,
     HeroControlsComponent,
     HeroDetailsComponent,
-    HeroTeamComponent
+    HeroTeamComponent,
+    RxjsComponent,
+    DragComponent
   ]
 })
 export class BasicModule { }
