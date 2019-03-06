@@ -30,3 +30,11 @@ html, body {
 .mat-form-field {
     width: 100%;
 }
+
+.dot{
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    display: inline-block;
+    position: absolute;
+}

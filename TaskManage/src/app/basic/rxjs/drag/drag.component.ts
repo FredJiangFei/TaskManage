@@ -15,7 +15,7 @@ export class DragComponent implements OnInit {
 
   constructor() { }
   ngOnInit() {
-    this.concatAll();
+    this.initDrag();
   }
 
   concatAll() {
@@ -74,21 +74,20 @@ export class DragComponent implements OnInit {
   }
 
   initDrag() {
-    const dragMouseDown$ = fromEvent<MouseEvent>(this.dragEle.nativeElement, 'mousedown');
-
-    const body = document.body;
-    const bodyUp$ = fromEvent<MouseEvent>(body, 'mouseup');
-    const bodyMove$ = fromEvent<MouseEvent>(body, 'mousemove');
+    const ele = this.dragEle.nativeElement;
+    const dragMouseDown$ = fromEvent<MouseEvent>(ele, 'mousedown');
+    const dragMouseUp$ = fromEvent<MouseEvent>(ele, 'mouseup');
+    const bodyMove$ = fromEvent<MouseEvent>(document.body, 'mousemove');
 
     const source$ = dragMouseDown$.pipe(
-      map(e => bodyMove$.pipe(takeUntil(bodyUp$))),
+      map(e => bodyMove$.pipe(takeUntil(dragMouseUp$))),
       concatAll(),
       map(event => ({ x: event.clientX, y: event.clientY }))
     );
 
     source$.subscribe(pos => {
-      this.dragEle.nativeElement.style.left = pos.x + 'px';
-      this.dragEle.nativeElement.style.top = pos.y + 'px';
+      ele.style.left = pos.x + 'px';
+      ele.style.top = pos.y + 'px';
     });
   }
 }

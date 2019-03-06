@@ -12,6 +12,8 @@ import { HeroDetailsComponent } from './component-style/hero-details/hero-detail
 import { HeroTeamComponent } from './component-style/hero-team.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { DragComponent } from './rxjs/drag/drag.component';
+import { CalculateComponent } from './rxjs/calculate/calculate.component';
+import { MouseMoveComponent } from './rxjs/mouse-move/mouse-move.component';
 
 const routes: Routes = [
   {
@@ -36,7 +38,9 @@ const routes: Routes = [
     HeroDetailsComponent,
     HeroTeamComponent,
     RxjsComponent,
-    DragComponent
+    DragComponent,
+    CalculateComponent,
+    MouseMoveComponent
   ]
 })
 export class BasicModule { }
