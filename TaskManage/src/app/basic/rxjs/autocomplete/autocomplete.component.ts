@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
-import { debounceTime, map, switchMap } from 'rxjs/operators';
+import { debounceTime, switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { UsersService } from 'src/app/_services/users.service';
 
 @Component({
   selector: 'app-autocomplete',
@@ -10,6 +11,10 @@ import { debounceTime, map, switchMap } from 'rxjs/operators';
 export class AutocompleteComponent implements OnInit {
   @ViewChild('autocomplete') autocomplete: ElementRef;
 
+  constructor(private usersService: UsersService) {
+
+  }
+
   ngOnInit() {
     this.initAutoComplete();
   }
@@ -18,15 +23,21 @@ export class AutocompleteComponent implements OnInit {
     fromEvent<any>(this.autocomplete.nativeElement, 'input')
       .pipe(
         debounceTime(500),
-        switchMap(x => this.getSuggestList(x.srcElement.value),
-        (outerValue, innerValue, outerIndex: number, innerIndex: number) => innerValue[1])
+        distinctUntilChanged(),
+        switchMap(x => this.getSuggestList(x.target.value),
+        (outerValue, innerValue, outerIndex: number, innerIndex: number) => {
+          console.log(`outerValue ${outerValue}`);
+          console.log(`innerValue ${innerValue}`);
+          console.log(`outerIndex ${outerIndex}`);
+          console.log(`innerIndex ${innerIndex}`);
+          return innerValue;
+        })
       )
       .subscribe(console.log);
   }
 
   getSuggestList(keyword) {
-    const url = 'https://zh.wikipedia.org/w/api.php?action=opensearch&format=json&limit=5&origin=*';
-    return fetch(url + '&search=' + keyword, { method: 'GET', mode: 'cors' })
-          .then(res => res.json());
+    console.log(`keyword ${keyword}`);
+    return this.usersService.getAll();
   }
 }
