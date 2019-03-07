@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
 import { Item } from '../_models/item';
 import { startWith } from 'rxjs/operators';
-import { AddTodo, RemoveTodo, ToggleTodo } from '../_actions/todo.actions';
+import { AddTodo, RemoveTodo, ToggleTodo, Load } from '../_actions/todo.actions';
 import { ShowAll, ShowComplete, ShowActive } from '../_actions/todo.filter.actions';
 import { Store, select } from '@ngrx/store';
 
@@ -27,6 +27,8 @@ export class ItemListComponent implements OnInit {
 
      this.items = combineLatest(data$, filterData$,
       (todos: Item[], filter: any) => todos.filter(filter));
+
+      this.store$.dispatch(new Load());
   }
 
   addTodo(name: string) {

@@ -5,6 +5,10 @@ let id = 1;
 
 export const todoReducer = (state: Item[] = [], action: TodoAction) => {
   switch (action.type) {
+
+    case TodoActionTypes.LOAD_SUCCESS:
+      return action.payload;
+
     case TodoActionTypes.ADD_TODO: {
       action.payload.id = id;
       id++;
@@ -22,10 +26,6 @@ export const todoReducer = (state: Item[] = [], action: TodoAction) => {
         return Object.assign({}, todo, { completed: !todo.completed });
       });
 
-    case TodoActionTypes.TOGGLE_ALL:
-      return state.map(todo => {
-        return Object.assign({}, todo, { completed: !todo.completed });
-      });
     default:
       return state;
   }

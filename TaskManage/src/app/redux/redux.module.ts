@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { todoReducer } from './_reducers/todo.reducer';
 import { todoFilterReducer } from './_reducers/todo.filter.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { ItemEffects } from './_effects/item-effects';
 
 const routes: Routes = [
   {
@@ -15,7 +17,7 @@ const routes: Routes = [
   }
 ];
 
-// npm i @ngrx/core @ngrx/store @ngrx/store-devtools --save
+// npm i @ngrx/core @ngrx/store @ngrx/store-devtools @ngrx/effects --save
 @NgModule({
   imports: [
     ShareModule,
@@ -26,7 +28,8 @@ const routes: Routes = [
         todoFilter: todoFilterReducer
       }
     ),
-    StoreDevtoolsModule.instrument()
+    // EffectsModule.forRoot([ItemEffects]),
+    // StoreDevtoolsModule.instrument()
   ],
   declarations: [
     ReduxComponent,
