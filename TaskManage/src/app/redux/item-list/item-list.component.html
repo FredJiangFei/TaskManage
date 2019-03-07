@@ -1,0 +1,17 @@
+
+<a (click)="all()">All</a> |
+<a (click)="completed()">Completed</a> |
+<a (click)="actived()">Active</a>
+
+<ul>
+  <li *ngFor="let item of items | async">
+    {{item.name}}
+
+    <span *ngIf="item.completed">(Completed)</span>
+
+    <button (click)="toggleTodo(item)">Toggle</button>
+    <button (click)="removeTodo(item)">Remove</button>
+  </li>
+</ul>
+
+<button (click)="addTodo()">Add</button>

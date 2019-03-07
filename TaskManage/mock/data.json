@@ -24,5 +24,22 @@
       "password": "password1",
       "id": 4
     }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "item 1",
+      "description": "This is a description"
+    },
+    {
+      "id": 2,
+      "name": "item 2",
+      "description": "This is a description"
+    },
+    {
+      "id": 3,
+      "name": "item 3",
+      "description": "This is a description"
+    }
   ]
 }

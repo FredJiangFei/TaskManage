@@ -12,7 +12,8 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
             { path: 'tasks', loadChildren: './task/task.module#TaskModule' },
-            { path: 'basic', loadChildren: './basic/basic.module#BasicModule' }
+            { path: 'basic', loadChildren: './basic/basic.module#BasicModule' },
+            { path: 'redux', loadChildren: './redux/redux.module#ReduxModule' }
         ]
     },
     { path: 'login', component: LoginComponent },
