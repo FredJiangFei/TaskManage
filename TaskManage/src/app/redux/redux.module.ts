@@ -9,6 +9,7 @@ import { todoFilterReducer } from './_reducers/todo.filter.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ItemEffects } from './_effects/item-effects';
+import { Item } from './_models/item';
 
 const routes: Routes = [
   {
@@ -16,6 +17,12 @@ const routes: Routes = [
     component: ReduxComponent
   }
 ];
+
+export interface TodoState {
+  todos: Item[];
+  todoFilter: any;
+  error: string;
+}
 
 // npm i @ngrx/core @ngrx/store @ngrx/store-devtools @ngrx/effects --save
 @NgModule({

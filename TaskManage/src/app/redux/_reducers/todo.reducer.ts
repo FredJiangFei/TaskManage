@@ -7,20 +7,23 @@ export const todoReducer = (state: Item[] = [], action: TodoAction) => {
     case TodoActionTypes.LOAD_SUCCESS:
       return action.payload;
 
-    case TodoActionTypes.ADD_TODO: {
+    case TodoActionTypes.ADD_TODO_SUCCESS: {
       return [...state, action.payload];
     }
 
-    case TodoActionTypes.REMOVE_TODO:
-      return state.filter(todo => todo.id !== action.payload.id);
+    case TodoActionTypes.TOGGLE_TODO_SUCCESS:
+      const items = state.map(
+        item => action.payload.id === item.id ? action.payload : item);
+      return items;
 
-    case TodoActionTypes.TOGGLE_TODO:
-      return state.map(todo => {
-        if (todo.id !== action.payload.id) {
-          return todo;
-        }
-        return Object.assign({}, todo, { completed: !todo.completed });
-      });
+    case TodoActionTypes.REMOVE_TODO_SUCCESS:
+      return state.filter(todo => todo.id !== action.payload);
+
+    case TodoActionTypes.LOAD_FAIL:
+    case TodoActionTypes.ADD_TODO_FAIL:
+    case TodoActionTypes.TOGGLE_TODO_FAIL:
+    case TodoActionTypes.REMOVE_TODO_FAIL:
+      return action.payload;
 
     default:
       return state;
