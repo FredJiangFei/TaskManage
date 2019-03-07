@@ -13,7 +13,6 @@ import { Store, select } from '@ngrx/store';
 })
 export class ItemListComponent implements OnInit {
   items: Observable<Item[]>;
-  ids = [1, 2, 3, 4, 5];
 
   constructor(private store$: Store<Item>) { }
 
@@ -30,15 +29,11 @@ export class ItemListComponent implements OnInit {
       (todos: Item[], filter: any) => todos.filter(filter));
   }
 
-  addTodo() {
+  addTodo(name: string) {
     const todoToAdd = {
-      id: this.ids[0],
-      name: 'item ' + this.ids[0],
-      description: 'This is description'
+      name: name
     };
     this.store$.dispatch(new AddTodo(todoToAdd));
-    const curId = this.ids[0];
-    this.ids = this.ids.filter(id => id !== curId);
   }
 
   removeTodo(item: Item) {

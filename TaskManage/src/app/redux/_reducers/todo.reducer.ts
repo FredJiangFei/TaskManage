@@ -1,10 +1,15 @@
 import { Item } from '../_models/item';
 import { TodoAction, TodoActionTypes } from '../_actions/todo.actions';
 
+let id = 1;
+
 export const todoReducer = (state: Item[] = [], action: TodoAction) => {
   switch (action.type) {
-    case TodoActionTypes.ADD_TODO:
+    case TodoActionTypes.ADD_TODO: {
+      action.payload.id = id;
+      id++;
       return [...state, action.payload];
+    }
 
     case TodoActionTypes.REMOVE_TODO:
       return state.filter(todo => todo.id !== action.payload.id);
