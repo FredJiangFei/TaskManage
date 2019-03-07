@@ -6,6 +6,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { StoreModule } from '@ngrx/store';
 import { todoReducer } from './_reducers/todo.reducer';
 import { todoFilterReducer } from './_reducers/todo.filter.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   }
 ];
 
+// npm i @ngrx/core @ngrx/store @ngrx/store-devtools --save
 @NgModule({
   imports: [
     ShareModule,
@@ -24,6 +26,7 @@ const routes: Routes = [
         todoFilter: todoFilterReducer
       }
     ),
+    StoreDevtoolsModule.instrument()
   ],
   declarations: [
     ReduxComponent,
