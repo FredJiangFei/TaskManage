@@ -28,8 +28,8 @@ const routes: Routes = [
         todoFilter: todoFilterReducer
       }
     ),
-    // EffectsModule.forRoot([ItemEffects]),
-    // StoreDevtoolsModule.instrument()
+    EffectsModule.forRoot([ItemEffects]),
+    StoreDevtoolsModule.instrument()
   ],
   declarations: [
     ReduxComponent,

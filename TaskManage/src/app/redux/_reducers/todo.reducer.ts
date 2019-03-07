@@ -1,8 +1,6 @@
 import { Item } from '../_models/item';
 import { TodoAction, TodoActionTypes } from '../_actions/todo.actions';
 
-let id = 1;
-
 export const todoReducer = (state: Item[] = [], action: TodoAction) => {
   switch (action.type) {
 
@@ -10,8 +8,6 @@ export const todoReducer = (state: Item[] = [], action: TodoAction) => {
       return action.payload;
 
     case TodoActionTypes.ADD_TODO: {
-      action.payload.id = id;
-      id++;
       return [...state, action.payload];
     }
 
