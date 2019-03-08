@@ -1,68 +1,137 @@
-<h4>Creation operators</h4>
-<h5>from</h5>
-<span *ngFor="let item of fromObs">{{item}} </span>
-<h5>interval</h5>
-<h5>of</h5>
-<h5>
-  timer
-  <span>timer emits after 1 second, then every 2 seconds</span>
-</h5>
+<mat-tab-group>
+  <mat-tab label="Creation operators">
+    <h5>create</h5>
+    <h5>
+      defer
+      <span>被调用的时候再创建Observable</span>
+    </h5>
+    <h5>empty</h5>
+    <span *ngFor="let item of deferObs">{{item}} </span>
+    <h5>from</h5>
+    <span *ngFor="let item of fromObs">{{item}} </span>
+    <h5>fromEvent</h5>
+    <h5>interval</h5>
+    <h5>of</h5>
+    <h5>range</h5>
+    <h5>throw</h5>
+    <h5>
+      timer
+      <span>timer emits after 1 second, then every 2 seconds</span>
+    </h5>
 
-<span *ngFor="let item of timerObs">{{item}} </span>
-<hr>
+    <span *ngFor="let item of timerObs">{{item}} </span>
+  </mat-tab>
+  <mat-tab label="Conditional operators">
+    <h5>defaultIfEmpty</h5>
+    <h5>every</h5>
+    <h5>
+      iif
+      <span>Decides at subscription time which Observable will actually be subscribed.</span>
+    </h5>
 
-<h4>Conditional operators</h4>
-<h5>defaultIfEmpty</h5>
-<h5>every</h5>
-<h5>
-  iif
-  <span>Decides at subscription time which Observable will actually be subscribed.</span>
-</h5>
+    <h5>sequenceEqual <span>?</span></h5>
+  </mat-tab>
+  <mat-tab label="Combionation operators">
+    <h5>
+      combineLatest
+      <span>任何一个上游Observable产生数据，从所有Observables取出最后一个数据，组合传给下游。</span>
+    </h5>
+    <div>
+      <button id='red'>Red</button>
+      <button id='black'>Black</button>
+    </div>
+    <div>Red: <span id="redTotal"></span> </div>
+    <div>Black: <span id="blackTotal"></span> </div>
+    <div>Total: <span id="total"></span> </div>
 
-<h5>sequenceEqual ?</h5>
-<hr>
+    <h5>
+      concat
+      <span>首尾相连</span>
+    </h5>
+    <h5>
+      forkJoin
+      <span>当所有Observable都完结，将每个Observable的最后一个数据合并，传递给下游</span>
+    </h5>
+    <h5>
+      merge
+      <span>先到先得</span>
+    </h5>
+    <h5>
+      pairwise
+      <span>将前一个值和当前值作为一个数组传递给下游</span>
+    </h5>
+    <h5>
+      race
+      <span>胜者通吃</span>
+    </h5>
+    <h5>
+      startWith
+      <span>Observable在被订阅的时候，先吐出指定的若干数据</span>
+    </h5>
+    <h5>
+      withLatestFrom
+      <span>类似combineLatest，但是给下游推送数据只由主Observable控制</span>
+    </h5>
+    <h5>
+      zip
+      <span>拉链组合，一一对应</span>
+    </h5>
+    <span id="drag-sqaure"></span>
+  </mat-tab>
 
-<h4>Combionation operators</h4>
-<h5>combineAll</h5>
-<h5>
-  combineLatest
-  <span>任何一个上游Observable产生数据，从所有Observables取出最后一个数据，组合传给下游。</span>
-</h5>
-<div>
-  <button id='red'>Red</button>
-  <button id='black'>Black</button>
-</div>
-<div>Red: <span id="redTotal"></span> </div>
-<div>Black: <span id="blackTotal"></span> </div>
-<div>Total: <span id="total"></span> </div>
+  <mat-tab label="Filtering Operators">
+    <h5>throttle</h5>
+    <h5>throttleTime</h5>
+    <span>throttleTime(2000), 2秒内产生的数据，只有第一个会传递给下游</span>
 
-<h5>
-  concat
-  <span>首尾相连</span>
-</h5>
-<h5>concatAll</h5>
-<h5>forkJoin</h5>
-<h5>
-  merge
-  <span>先到先得</span>
-</h5>
-<h5>mergeAll</h5>
-<h5>pairwise</h5>
-<h5>
-  race
-  <span>胜者通吃</span>
-</h5>
-<h5>
-  startWith
-  <span>Observable在被订阅的时候，先吐出指定的若干数据</span>
-</h5>
-<h5>
-  withLatestFrom
-  <span>类似combineLatest，但是给下游推送数据只由主Observable控制</span>
-</h5>
-<h5>
-  zip
-  <span>拉链组合，一一对应</span>
-</h5>
-<span id="drag-sqaure"></span>
-<hr>
+    <h5>debounce</h5>
+    <h5>debounceTime</h5>
+    <span>debounceTime(2000), 2秒内不再产生任何数据，才会把第一个传递给下游</span>
+
+    <h5>audit</h5>
+    <h5>auditTime</h5>
+    <span>auditTime(2000), 2秒内产生的数据，只有最后一个会传递给下游</span>
+
+    <h5>sample<span>根据规则取范围内最后一个数据，其他的抛弃</span></h5>
+    <h5>sampleTime</h5>
+
+    <h5>distinct</h5>
+    <h5>distinctUntilChanged<span>只要和上一个值不同，就取</span></h5>
+    <h5>distinctUntilKeyChanged</h5>
+
+    <h5>filter</h5>
+    <h5>first</h5>
+    <h5>last</h5>
+    <h5>single</h5>
+
+    <h5>ignoreElements<span>忽略所有元素，只关心complete和error</span></h5>
+
+    <h5>take</h5>
+    <h5>takeWhile</h5>
+    <p>不断吐出数据，直到条件为false</p>
+    <h5>takeUntil</h5>
+    <p>不断吐出数据，直到notifier（另一个Observable）吐出数据或完结</p>
+    <h5>skip</h5>
+    <h5>skipUntil</h5>
+    <h5>skipWhile</h5>
+  </mat-tab>
+
+  <mat-tab label="Error Handling Operators">
+    <h5>catch / catchError</h5>
+    <h5>retry</h5>
+    <h5>retryWhen</h5>
+  </mat-tab>
+
+  <mat-tab label="高阶 operators">
+    <h5>combineAll</h5>
+    <h5>concatAll</h5>
+    <h5>mergeAll</h5>
+  </mat-tab>
+
+  <mat-tab label="Multicasting Operators">
+    <h5>publish</h5>
+    <h5>multicast</h5>
+    <h5>share</h5>
+    <h5>shareReplay</h5>
+  </mat-tab>
+</mat-tab-group>

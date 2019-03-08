@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { from, timer, fromEvent, zip, combineLatest } from 'rxjs';
-import { delayWhen, map, tap, bufferCount, mergeMap, sequenceEqual, mapTo, startWith, scan } from 'rxjs/operators';
+import { from, timer, fromEvent, zip, combineLatest, forkJoin, of, interval, defer, merge } from 'rxjs';
+import { delayWhen, map, tap, bufferCount, mergeMap, sequenceEqual, mapTo, startWith, scan, delay, take, switchMap, auditTime, takeWhile, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-overview',
@@ -10,10 +10,18 @@ import { delayWhen, map, tap, bufferCount, mergeMap, sequenceEqual, mapTo, start
 export class RxjsOverviewComponent implements OnInit {
   fromObs = [];
   timerObs = [];
+  deferObs = [];
   constructor() { }
 
   ngOnInit() {
-    this.combineLatest();
+    //emit value every 1s
+    const source = interval(1000);
+    //after 5 seconds, emit value
+    const timer$ = timer(5000);
+    //when timer emits after 5s, complete source
+    const example = source.pipe(takeUntil(timer$));
+    //output: 0,1,2,3
+    const subscribe = example.subscribe(val => console.log(val));
   }
 
   from() {
@@ -68,5 +76,16 @@ export class RxjsOverviewComponent implements OnInit {
     combineLatest(addOneClick$('red'), addOneClick$('black'))
       .pipe(map(([val1, val2]) => val1 + val2))
       .subscribe(setHtml('total'));
+  }
+
+  defer() {
+    const s1 = of(new Date());
+    const s2 = defer(() => of(new Date()));
+
+    timer(1000)
+      .pipe(
+        switchMap(_ => merge(s1, s2))
+      ).subscribe(date => this.deferObs.push(date.getMinutes() + ':' + date.getSeconds()));
+
   }
 }
