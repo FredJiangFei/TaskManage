@@ -37,7 +37,8 @@
     },
     {
       "name": "ferd aad",
-      "id": 4
+      "id": 4,
+      "completed": true
     }
   ]
 }

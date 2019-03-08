@@ -16,7 +16,7 @@ export class AuthService {
 
   LoggedIn() {
     const token = localStorage.getItem('token');
-    return !this.jwtService.isTokenExpired(token);
+    return true; //!this.jwtService.isTokenExpired(token);
   }
 
   LoggedUser(): User {
@@ -26,12 +26,12 @@ export class AuthService {
 
   login(user: LoginCommand) {
     return this.http.post<User>(`${environment.baseUrl}/users/login`, user)
-    .pipe(
-      tap((response: any) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('loginUser', JSON.stringify(response.user));
-      })
-    );
+      .pipe(
+        tap((response: any) => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('loginUser', JSON.stringify(response.user));
+        })
+      );
   }
 
   register(user: RegisterCommand) {

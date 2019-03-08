@@ -1,9 +1,10 @@
 <div [class.theme-dark]="darkTheme">
   <mat-toolbar color="primary">
     <span [routerLink]="['/']">Welcome {{user?.username}}</span>
-  
+
     <span class="fill-remaining-space"></span>
-  
+
+    <button mat-button [routerLink]="['/rxjs']">Rxjs</button>
     <button mat-button [routerLink]="['/redux']">Redux</button>
     <button mat-button [routerLink]="['/basic']">Basic</button>
     <button mat-button [routerLink]="['/tasks']">Tasks</button>

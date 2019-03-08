@@ -13,7 +13,8 @@ export const routes: Routes = [
         children: [
             { path: 'tasks', loadChildren: './task/task.module#TaskModule' },
             { path: 'basic', loadChildren: './basic/basic.module#BasicModule' },
-            { path: 'redux', loadChildren: './redux/redux.module#ReduxModule' }
+            { path: 'redux', loadChildren: './redux/redux.module#ReduxModule' },
+            { path: 'rxjs', loadChildren: './rxjs/rxjs.module#RxjsModule' }
         ]
     },
     { path: 'login', component: LoginComponent },

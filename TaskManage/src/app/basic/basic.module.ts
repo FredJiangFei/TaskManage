@@ -10,11 +10,6 @@ import { ComponentStyleComponent } from './component-style/component-style.compo
 import { HeroControlsComponent } from './component-style/hero-controls.component';
 import { HeroDetailsComponent } from './component-style/hero-details/hero-details.component';
 import { HeroTeamComponent } from './component-style/hero-team.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
-import { DragComponent } from './rxjs/drag/drag.component';
-import { CalculateComponent } from './rxjs/calculate/calculate.component';
-import { MouseMoveComponent } from './rxjs/mouse-move/mouse-move.component';
-import { AutocompleteComponent } from './rxjs/autocomplete/autocomplete.component';
 
 const routes: Routes = [
   {
@@ -37,12 +32,7 @@ const routes: Routes = [
     ComponentStyleComponent,
     HeroControlsComponent,
     HeroDetailsComponent,
-    HeroTeamComponent,
-    RxjsComponent,
-    DragComponent,
-    CalculateComponent,
-    MouseMoveComponent,
-    AutocompleteComponent
+    HeroTeamComponent
   ]
 })
 export class BasicModule { }
