@@ -7,11 +7,22 @@ import { MouseMoveComponent } from './mouse-move/mouse-move.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { RxjsComponent } from './rxjs.component';
 import { RxjsOverviewComponent } from './rxjs-overview/rxjs-overview.component';
+import { RxjsSubjectComponent } from './rxjs-subject/rxjs-subject.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RxjsComponent
+    component: RxjsComponent,
+    children: [
+      {
+        path: '',
+        component: RxjsOverviewComponent
+      },
+      {
+        path: 'subject',
+        component: RxjsSubjectComponent
+      }
+    ]
   }
 ];
 
@@ -26,7 +37,8 @@ const routes: Routes = [
     CalculateComponent,
     MouseMoveComponent,
     AutocompleteComponent,
-    RxjsOverviewComponent
+    RxjsOverviewComponent,
+    RxjsSubjectComponent
   ]
 })
 export class RxjsModule { }

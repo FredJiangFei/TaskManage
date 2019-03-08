@@ -83,62 +83,64 @@
     <h5>map</h5>
     <h5>mapTo</h5>
     <h5>pluck</h5>
-    <span>获取特定字段，pluck('job', 'title')访问嵌套属性</span>
+    <p>获取特定字段，pluck('job', 'title')访问嵌套属性</p>
+    <br />
+
     <h5>reduce 只显示结果</h5>
     <h5>scan 显示每一步</h5>
+    <br />
 
     <h5>buffer</h5>
     <h5>bufferCount</h5>
     <h5>bufferTime</h5>
     <h5>bufferToggle</h5>
     <h5>bufferWhen</h5>
+    <br />
 
     <h5>window</h5>
     <h5>windowCount</h5>
     <h5>windowTime</h5>
     <h5>windowToggle</h5>
     <h5>windowWhen</h5>
+    <br />
 
-    <h5>concatMap</h5>
-    <h5>concatMapTo</h5>
-    <h5>exhaustMap</h5>
-    <h5>expand</h5>
-    <h5>groupBy</h5>
-
-    <h5>mergeMap / flatMap</h5>
-    <h5>partition</h5>
-
-    <h5>switchMap</h5>
-    <h5>toArray</h5>
-
+    <h5>groupBy <span>分组，产生高阶Observable</span></h5>
+    <h5>partition<span>根据条件将Observable分为两个Observable</span></h5>
   </mat-tab>
 
   <mat-tab label="Filtering Operators">
     <h5>throttle</h5>
     <h5>throttleTime</h5>
-    <span>throttleTime(2000), 2秒内产生的数据，只有第一个会传递给下游</span>
+    <p>throttleTime(2000), 2秒内产生的数据，只有第一个会传递给下游</p>
+    <br />
 
     <h5>debounce</h5>
     <h5>debounceTime</h5>
-    <span>debounceTime(2000), 2秒内不再产生任何数据，才会把第一个传递给下游</span>
+    <p>debounceTime(2000), 2秒内不再产生任何数据，才会把第一个传递给下游</p>
+    <br />
 
     <h5>audit</h5>
     <h5>auditTime</h5>
-    <span>auditTime(2000), 2秒内产生的数据，只有最后一个会传递给下游</span>
+    <p>auditTime(2000), 2秒内产生的数据，只有最后一个会传递给下游</p>
+    <br />
 
     <h5>sample<span>根据规则取范围内最后一个数据，其他的抛弃</span></h5>
     <h5>sampleTime</h5>
+    <br />
 
     <h5>distinct</h5>
     <h5>distinctUntilChanged<span>只要和上一个值不同，就取</span></h5>
     <h5>distinctUntilKeyChanged</h5>
+    <br />
 
     <h5>filter</h5>
     <h5>first</h5>
     <h5>last</h5>
     <h5>single</h5>
+    <br />
 
     <h5>ignoreElements<span>忽略所有元素，只关心complete和error</span></h5>
+    <br />
 
     <h5>take</h5>
     <h5>takeWhile</h5>
@@ -156,16 +158,31 @@
     <h5>retryWhen</h5>
   </mat-tab>
 
+  <mat-tab label="Utility">
+    <h5>do / tap</h5>
+    <h5>delay</h5>
+    <h5>delayWhen</h5>
+    <h5>dematerialize</h5>
+    <h5>finalize / finally</h5>
+    <h5>let</h5>
+    <h5>repeat</h5>
+    <h5>timeout</h5>
+    <h5>toPromise</h5>
+  </mat-tab>
+
   <mat-tab label="高阶 operators">
     <h5>combineAll</h5>
     <h5>concatAll</h5>
     <h5>mergeAll</h5>
-  </mat-tab>
+    <h5>switch<span>总是切换到最新的Obervable获取数据</span></h5>
+    <h5>exhaust<span>耗尽当前Obervable之前，不会切换到下一个Obervable</span></h5>
+    <br />
 
-  <mat-tab label="Multicasting Operators">
-    <h5>publish</h5>
-    <h5>multicast</h5>
-    <h5>share</h5>
-    <h5>shareReplay</h5>
+    <h5>concatMap <span>= map + concatAll</span></h5>
+    <h5>concatMapTo <span>= mapTo + concatAll</span></h5>
+    <h5>exhaustMap <span>= map + exhaust</span></h5>
+    <h5>mergeMap <span>= map + mergeAll</span></h5>
+    <h5>switchMap <span>= map + switch</span></h5>
+    <h5>expand <span>?</span></h5>
   </mat-tab>
 </mat-tab-group>
