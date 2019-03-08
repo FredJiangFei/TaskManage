@@ -1,0 +1,16 @@
+hr{
+    background-color: darkred;
+}
+
+h5 span {
+    font-size: 14px;
+    color: red;
+}
+
+#drag-sqaure{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    display: block;
+    position: fixed;
+}

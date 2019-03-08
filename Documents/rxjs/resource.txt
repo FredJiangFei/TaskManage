@@ -1,3 +1,6 @@
 https://ithelp.ithome.com.tw/users/20103367/ironman/1199
 http://rxmarbles.com/#of
 https://cn.rx.js.org/class/es6/Observable.js~Observable.html
+
+
+https://www.learnrxjs.io/operators/conditional/defaultifempty.html

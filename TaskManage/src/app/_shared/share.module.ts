@@ -1,7 +1,7 @@
 import { IdToUserPipe } from '../_pipes/id-to-user.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import {
     MatIconModule,
@@ -24,7 +24,8 @@ import {
     MatPaginatorModule,
     MatTabsModule,
     MatBadgeModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTreeModule
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -76,6 +77,7 @@ import { DropDirective } from '../_directives/drop.directive';
         MatBadgeModule,
         MatPaginatorModule,
         MatChipsModule,
+        MatTreeModule,
 
         PasswordDirective,
         SpinnerDirective,

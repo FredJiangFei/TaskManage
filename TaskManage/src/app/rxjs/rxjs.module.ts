@@ -6,6 +6,7 @@ import { CalculateComponent } from './calculate/calculate.component';
 import { MouseMoveComponent } from './mouse-move/mouse-move.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { RxjsComponent } from './rxjs.component';
+import { RxjsOverviewComponent } from './rxjs-overview/rxjs-overview.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     DragComponent,
     CalculateComponent,
     MouseMoveComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    RxjsOverviewComponent
   ]
 })
 export class RxjsModule { }

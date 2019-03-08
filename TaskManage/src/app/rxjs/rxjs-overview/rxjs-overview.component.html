@@ -1,0 +1,59 @@
+<h4>Creation operators</h4>
+<h5>from</h5>
+<span *ngFor="let item of fromObs">{{item}} </span>
+<h5>interval</h5>
+<h5>of</h5>
+<h5>
+  timer
+  <span>timer emits after 1 second, then every 2 seconds</span>
+</h5>
+
+<span *ngFor="let item of timerObs">{{item}} </span>
+<hr>
+
+<h4>Conditional operators</h4>
+<h5>defaultIfEmpty</h5>
+<h5>every</h5>
+<h5>
+  iif
+  <span>Decides at subscription time which Observable will actually be subscribed.</span>
+</h5>
+
+<h5>sequenceEqual ?</h5>
+<hr>
+
+<h4>Combionation operators</h4>
+<h5>combineAll</h5>
+<h5>
+  combineLatest
+  <span>任何一个上游Observable产生数据，从所有Observables取出最后一个数据，组合传给下游。</span>
+</h5>
+<div>
+  <button id='red'>Red</button>
+  <button id='black'>Black</button>
+</div>
+<div>Red: <span id="redTotal"></span> </div>
+<div>Black: <span id="blackTotal"></span> </div>
+<div>Total: <span id="total"></span> </div>
+
+<h5>
+  concat
+  <span>首尾相连</span>
+</h5>
+<h5>concatAll</h5>
+<h5>forkJoin</h5>
+<h5>
+  merge
+  <span>先到先得</span>
+</h5>
+<h5>mergeAll</h5>
+<h5>pairwise</h5>
+<h5>race</h5>
+<h5>startWith</h5>
+<h5>withLatestFrom</h5>
+<h5>
+  zip
+  <span>拉链组合，一一对应</span>
+</h5>
+<span id="drag-sqaure"></span>
+<hr>
