@@ -1,8 +1,22 @@
-<h5>publish</h5>
-<h5>multicast</h5>
-<h5>share</h5>
-<h5>shareReplay</h5>
-<h5>AsyncSubject</h5>
-<h5>BehaviorSubject</h5>
-<h5>ReplaySubject</h5>
 <h5>Subject</h5>
+<p>1、Observable的冷（点播）和热（直播）</p>
+<p>2、Subject既是流的输出方也是观察方，将冷转化为热</p>
+
+
+<h5>支持多播的操作符</h5>
+<p>multicast</p>
+<p>refCount</p>
+<p>selector</p>
+<p>publish = multicast(new Subject())</p>
+<p>share = multicast(() => new Subject()).refCount()</p>
+
+<h5>shareReplay</h5>
+
+<h5>AsyncSubject / publishLast</h5>
+<p>在complete的时候，吐出上游最后一个数据</p>
+
+<h5>ReplaySubject / publishReplay</h5>
+<p>重播播放过的n个值</p>
+
+<h5>BehaviorSubject / publishBehavior</h5>
+<p>只记住最新的值</p>
